@@ -13,6 +13,6 @@ bwa index clean.fasta
 
 bwa mem (-T 40) clean.fasta read.fasta > out.sam
 
-perl startpoint.pl out.sam *.chr1 *.chr10 *.chr12 *.chr19
+perl count.pl out.sam 
 
-perl count.pl *.*
+
