@@ -1,0 +1,9 @@
+examples:
+DataMapsBubble.html?pos1=K103
+DataMapsBubble.html?pos1=K103&pos2=K113
+
+input:
+dataset.json//  map format
+polymat.json // matrix
+population.json // population information
+nsize-> bubble size setting

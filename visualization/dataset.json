@@ -1,0 +1,262 @@
+[
+	{
+		"idname":"BRB",
+		"genome1000ID" : "ACB",
+		"Description" : "African Caribbean in Barbados placed at Barbados ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 13.193887,
+		"longitude" : -59.543198 
+		},
+		{
+		"idname":"USA",
+		"genome1000ID" : "ASW",
+		"Description" : "African Ancestry in Southwest US placed at Congo[Republic] ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : -0.228021,
+		"longitude" : 15.827659 
+		},
+		{
+		"idname":"BGD",
+		"genome1000ID" : "BEB",
+		"Description" : "Bengali in Bangladesh placed at Bangladesh ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 23.684994,
+		"longitude" : 90.356331 
+		},
+		{
+		"idname":"CHN",
+		"genome1000ID" : "CDX",
+		"Description" : "Chinese Dai in Xishuangbanna China placed at Xishuangbanna ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 22.007351,
+		"longitude" : 100.797775 
+		},
+		{
+		"idname":"USA",
+		"genome1000ID" : "CEU",
+		"Description" : "Utah residents with Northern and Western European ancestry placed at Ireland ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 53.350140,
+		"longitude" : -6.266155 
+		},
+		{
+		"idname":"CHN",
+		"genome1000ID" : "CHB",
+		"Description" : "Han Chinese in Bejing China placed at Beijing ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 39.913818,
+		"longitude" : 116.363625 
+		},
+		{
+		"idname":"CHN",
+		"genome1000ID" : "CHS",
+		"Description" : "Southern Han Chinese China placed at Hong Kong ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 22.39643,
+		"longitude" : 114.10950 
+		},
+		{
+		"idname":"COL",
+		"genome1000ID" : "CLM",
+		"Description" : "Colombian in Medellin Colombia placed at Medellin ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 6.27053,
+		"longitude" : -75.5721199999999 
+		},
+		{
+		"idname":"NGA",
+		"genome1000ID" : "ESN",
+		"Description" : "Esan in Nigeria placed at Esan ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 9.081999,
+		"longitude" : 19.675277 
+		},
+		{
+		"idname":"FIN",
+		"genome1000ID" : "FIN",
+		"Description" : "Finnish in Finland placed at Finland ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 61.92411,
+		"longitude" : 25.748151 
+		},
+		{
+		"idname":"GBR",
+		"genome1000ID" : "GBR",
+		"Description" : "British in England and Scotland placed at London ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 51.500152,
+		"longitude" : -0.126236 
+		},
+		{
+		"idname":"USA",
+		"genome1000ID" : "GIH",
+		"Description" : "Gujarati Indian in Houston TX placed at Ahemdabad ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 23.033863,
+		"longitude" : 72.585022 
+		},
+		{
+		"idname":"GMB",
+		"genome1000ID" : "GWD",
+		"Description" : "Gambian in Western Division The Gambia placed at Banjul ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 13.4531,
+		"longitude" : -16.5775 
+		},
+		{
+		"idname":"ESP",
+		"genome1000ID" : "IBS",
+		"Description" : "Iberian populations in Spain placed at Madrid ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 40.415363,
+		"longitude" : -3.707398 
+		},
+		{
+		"idname":"GBR",
+		"genome1000ID" : "ITU",
+		"Description" : "Indian Telugu in the UK placed at Hyderabad ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 17.387140,
+		"longitude" : 78.491684 
+		},
+		{
+		"idname":"JPN",
+		"genome1000ID" : "JPT",
+		"Description" : "Japanese in Tokyo Japan placed at Tokyo ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 35.685360,
+		"longitude" : 139.753372 
+		},
+		{
+		"idname":"VNM",
+		"genome1000ID" : "KHV",
+		"Description" : "Kinh in Ho Chi Minh City Vietnam placed at  Ho Chi Minh City ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 10.762622,
+		"longitude" : 106.660172 
+		},
+		{
+		"idname":"KEN",
+		"genome1000ID" : "LWK",
+		"Description" : "Luhya in Webuye Kenya placed at Webuye ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 0.60751,
+		"longitude" : 34.76966 
+		},
+		{
+		"idname":"SLE",
+		"genome1000ID" : "MSL",
+		"Description" : "Mende in Sierra Leone placed at Sierra Leone ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 9.855216,
+		"longitude" : -11.322184 
+		},
+		{
+		"idname":"USA",
+		"genome1000ID" : "MXL",
+		"Description" : "Mexican Ancestry in Los Angeles California placed at Mexico City ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 19.432608,
+		"longitude" : -99.133209 
+		},
+		{
+		"idname":"PER",
+		"genome1000ID" : "PEL",
+		"Description" : "Peruvian in Lima Peru placed at Lima ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : -12.046374,
+		"longitude" : -77.042793 
+		},
+		{
+		"idname":"PAK",
+		"genome1000ID" : "PJL",
+		"Description" : "Punjabi in Lahore Pakistan placed at Lahore ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 31.582045,
+		"longitude" : 74.3293760 
+		},
+		{
+		"idname":"PRI",
+		"genome1000ID" : "PUR",
+		"Description" : "Puerto Rican in Puerto Rico placed at Puerto Rico ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 18.466333,
+		"longitude" : -66.105721 
+		},
+		{
+		"idname":"LKA",
+		"genome1000ID" : "STU",
+		"Description" : "Sri Lankan Tamil in the UK placed at Colombo ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 6.927079,
+		"longitude" : 79.861244 
+		},
+		{
+		"idname":"ITA",
+		"genome1000ID" : "TSI",
+		"Description" : "Toscani in Italy placed at Rome ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 41.890251,
+		"longitude" : 12.492373 
+		},
+		{
+		"idname":"NGA",
+		"genome1000ID" : "YRI",
+		"Description" : "Yoruba in Ibadan Nigeria placed at Nigeria ",
+		"PopulationCount" : 0,
+		"radius" : 0,
+		"fillKey" : "USA",
+		"latitude" : 9.081999,
+		"longitude" : 8.675277 
+		}
+]

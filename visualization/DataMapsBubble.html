@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="d3.min.js"></script>
+<script src="topojson.min.js"></script>
+<script src="datamaps.world.min.js"></script>
+<script src="jquery.min.js"></script>
+<script src="Querystring.js"></script>
+</head>
+<body> 
+<!--<p><a href='Welcome.html'>back</a></p>-->
+<div id='1'><p>Prevalence:</p></div>
+<div id="container" style="position: relative; width: 800px; height: 600px;"></div>
+<svg>
+
+    <!-- Horizontal Stripe pattern -->
+    <defs>
+        <pattern id="horizontal-stripe"
+                 width="4" height="4"
+                 patternUnits="userSpaceOnUse">
+             <line x1="0" y1="2" x2="4" y2="2" stroke="blue" />
+        </pattern>
+    </defs>
+       
+       
+      <!-- Vertical Stripe pattern -->   
+    <defs>
+        <pattern id="vertical-stripe"
+                 width="4" height="4"
+                 patternUnits="userSpaceOnUse">
+             <line x1="2" y1="0" x2="2" y2="4" stroke="green" />
+        </pattern>
+    </defs>
+    
+     <!-- Diagonal Stripe pattern -->
+    <defs>
+        <pattern id="diagonal-stripe"
+                 patternTransform="rotate(45)"
+                 width="4" height="4"
+                 patternUnits="userSpaceOnUse">
+             <line x1="2" y1="0" x2="2" y2="4" stroke="#bada55" stroke-width="2" />
+        </pattern>
+    </defs>
+
+      <!-- Circles pattern --> 
+    <defs>
+        <pattern id="circles"
+                 width="4" height="4"
+                 patternUnits="userSpaceOnUse">
+                   <circle cx="2.5" cy="2.5" r="1.3" fill="green" />
+      </pattern>
+    </defs>
+      
+       <!-- Gradient pattern. Wouldn't really recommend this one. -->
+     <linearGradient id="gradient">
+        <stop offset="5%" stop-color="#F60" />
+        <stop offset="95%" stop-color="#FF6" />
+     </linearGradient>
+       
+     <!-- Triangles pattern -->  
+     <pattern id="triangle"
+       width="8" height="8"
+       patternUnits="userSpaceOnUse">
+         <polygon points="3,0 6,6 0,6" fill="purple"/>
+      </pattern>
+</svg>
+
+<script>
+//	function getColor(d) {
+//			return d > 160 ? '#800026' :
+//			       d > 150  ? '#BD0026' :
+//			       d > 140  ? '#E31A1C' :
+//			       d > 130  ? '#FC4E2A' :
+//			       d > 120   ? '#FD8D3C' :
+//			       d > 110   ? '#FEB24C' :
+//			       d > 100   ? '#FED976' :
+//			                  '#FFEDA0';
+//		}
+ 
+
+	
+    var paletteScale = d3.scale.linear().domain([100,200]).range(["#EFEFFF","#02386F"]);
+	var map = new Datamap({
+			element: document.getElementById('container'),
+			projection: 'mercator',
+			fills: {
+				defaultFill: '#FFFFFF',
+				'USA': '#000000',
+				'RUS': '#9467bd',
+				'PRK': '#ff7f0e',
+				'PRC': '#2ca02c',
+				'IND': '#e377c2',
+				'GBR': '#8c564b',
+				'FRA': '#d62728',
+				'PAK': '#7f7f7f'//, // Any hex, color name or rgb/rgba value
+//			horizontalStripe: 'url(#horizontal-stripe)',
+//			diagonalStripe: 'url(#diagonal-stripe)',
+//			verticalStripe: 'url(#vertical-stripe)',
+//			circles: 'url(#circles)',
+//			gradient: 'url(#gradient)',
+//			triangle: 'url(#triangle)'
+			},
+			geographyConfig:{
+				borderColor: '#0000FF',
+				highlightFillColor : function(geo) {
+					return geo['fillColor'] || '#F5F5F5';
+				},
+				highlightBorderColor: '#B7B7B7',
+				popupTemplate : function(geo,data){
+					if(!data) {return ;}
+					return [ '<div class="hoverinfo">','<strong>', geo.properties.name, '</strong>','<br>Count: <strong>', data.PopulationCount,'</strong>','</strong>','<br>Description: <strong>', data.Description,'</strong>', '</div>'].join('');
+				}
+			}
+			
+			}
+			);
+
+////////////////////////////
+var mat = "polymat.json";//"matrix91.json";
+var nsize = 120; //30
+if(Object.keys(Request).length ==1){
+///////////////////////////////////////////////////////////////////////////////////////
+	// Defining the bubbles dataset: var bombs
+	 //draw bubbles for bombs
+  $.getJSON("dataset.json", function(bombs) {
+       $.getJSON(mat, function(result){  
+  	$.each(result, function(key, val){
+  	     if(key==Request['pos1']){
+  	     	       
+  	     	      var population={};
+		     $.getJSON("population.json", function(r){
+			     $.each( r, function( popkey, popval ){
+				population[popkey]=popval;
+			     });// each population
+			   
+			      ///////////// base /////////
+			     var base={};
+	    		 $.each( r, function( key, value ){
+	    		 	if(value in base){
+	    		 		base[value]++;
+                	 }else{
+                	 	base[value]=1;
+                	 	}
+	    		 }); 
+	    		  ///////////////////////////////
+	    		  
+	              var obj = {};
+                	 $.each( val, function( index, value ){
+                	 	if(value.count==1){
+                	 		//$("div").append(value.id+':'+population[value.id]+ "<br>");
+                	 		if(population[value.id] in obj){
+                	 			obj[population[value.id]]++;
+                	 		}else{
+                	 			obj[population[value.id]]=1;
+                	 		}
+                	 	}
+			 });
+			 
+			 
+       	///////      
+       	      // modify bombs
+       	       for (var i=0; i<bombs.length; i++) {
+			if(bombs[i].genome1000ID in obj){
+				bombs[i].PopulationCount=obj[bombs[i].genome1000ID]/base[bombs[i].genome1000ID];
+				bombs[i].radius = bombs[i].PopulationCount*nsize;	
+				$("#1").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount+"<br>");	
+			
+			}
+		}
+       	       
+		map.bubbles( bombs, {
+			fills: {
+		    defaultFill : 'F5F5F5' 
+			},
+			popupTemplate: function (geo, data) {
+					return ['<div class="hoverinfo">' +  data.idname,
+					'<br/>Population Abbreviation: (' +  data.genome1000ID + ')',
+					'<br/>Population Description: ' +  data.Description + '',
+					'<br/>Population Prevalence: ' + data.PopulationCount + '',
+					'</div>'].join('');
+			},
+			highlightFillColor : function(geo) {
+					return '#FC4E2A';
+			}
+		});// map.bubbles
+		map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
+	///////
+	 }); // population.json
+	     }//key==position
+	  }); //each result
+	 }); //"matrix91.json"
+	
+	 }); //Request["jsonfile"], function(bombs)
+/////////////////////////////////////////////////////////////////////////////////////////////
+}else{
+	///////////////////////////////////////////////////////////////////////////////////////
+	// Defining the bubbles dataset: var bombs
+	 //draw bubbles for bombs
+  $.getJSON("dataset.json", function(bombs) {
+       $.getJSON(mat, function(result){  
+           var myarray = [];
+           for(i=0;i<Object.keys(Request).length ; i++){
+	    	var position = "pos"+(i+1);
+	    	myarray.push(Request[position]);
+	    } 
+	    
+           var obj = {};
+          $.each(result, function(key, val){
+  	      if(jQuery.inArray(key, myarray) !== -1){
+                
+                	 $.each( val, function( index, value ){
+                	 	if(value.count==1){
+                	 		if(value.id in obj){
+                	 			obj[value.id]++;
+                	 		}else{
+                	 			obj[value.id]=1;
+                	 		}
+                	 	}//if =1
+			 });
+                }//if
+            });  // $.each(result, function(key, val)
+            
+	     var population={};
+	     var count={};
+	     $.getJSON("population.json", function(result){
+		$.each( result, function( key, value ){
+			population[key]=value;
+		});// each population
+			     
+		     ///////////// base /////////
+			     var base={};
+	    		 $.each( result, function( key, value ){
+	    		 	if(value in base){
+	    		 		base[value]++;
+                	 }else{
+                	 	base[value]=1;
+                	 	}
+	    		 }); 
+	    		  ///////////////////////////////
+	    		  
+	        $.each(obj, function(k,v){
+			if(v== myarray.length){ // an individual has all the polymorphism
+				if(population[k] in count){
+                	 		count[population[k]]++;
+                	 	}else{
+                	 		count[population[k]]=1; //findal result
+                	 	}
+			}
+		});
+		
+		 // print out objs{population: count}
+			 
+       	///////      
+       	       // modify bombs
+       	       for (var i=0; i<bombs.length; i++) {
+			if(bombs[i].genome1000ID in count){
+				bombs[i].PopulationCount=count[bombs[i].genome1000ID]/base[bombs[i].genome1000ID];
+				bombs[i].radius = bombs[i].PopulationCount*nsize;
+				$("#1").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount+"<br>");	
+			}
+		}
+       	       
+		map.bubbles( bombs, {
+			fills: {
+		    defaultFill : 'F5F5F5' 
+			},
+			popupTemplate: function (geo, data) {
+					return ['<div class="hoverinfo">' +  data.idname,
+					'<br/>Population Abbreviation: (' +  data.genome1000ID + ')',
+					'<br/>Population Description: ' +  data.Description + '',
+					'<br/>Population Prevalence: ' + data.PopulationCount + '',
+					'</div>'].join('');
+			},
+			highlightFillColor : function(geo) {
+					return '#FC4E2A';
+			}
+		});// map.bubbles
+		map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
+	///////
+	 }); // population.json
+	    
+	//  }); //each result
+	 }); //"matrix91.json"
+	
+	 }); //Request["jsonfile"], function(bombs)
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+  
+}
+  
+	// Adding plug-in for labels on Bubbles
+	
+	function handleBombLabels ( layer, data, options ) {
+            var self = this;
+            options = options || {};
+
+            d3.selectAll(".datamaps-bubble")
+            .attr("data-foo", function(datum) {
+              var coords = self.latLngToXY(datum.latitude, datum.longitude)
+              
+              layer.append("text")
+              .attr("x", coords[0] - 12)
+              .attr("y", coords[1] + 5)
+              .style("font-size", (options.fontSize || 10) + 'px')
+              .style("font-family", options.fontFamily || "sans-serif")
+              .style("fill", options.labelColor || "#000")
+              .style('stroke', '#fff')
+              .text( datum[options.labelKey]);
+              return "bar";
+            });
+          }
+	map.addPlugin('bombLabels', handleBombLabels);
+	//map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
+	
+	//map.legend();
+</script>
+
+
+</body>
+</html>
