@@ -11,8 +11,18 @@
 </head>
 <body> 
 <!--<p><a href='Welcome.html'>back</a></p>-->
-<div id='1'><p>Prevalence:</p></div>
-<div id="container" style="position: relative; width: 800px; height: 600px;"></div>
+<div style="width:100%">
+<div id="container" style="float:left;width: 800px; height: 600px;"></div><!--position: relative; -->
+<div id='val' style="float:right; "></div>
+</div>
+<p>Press +: bubble enlarged by 2 <br>
+Press -: bubble shrinked by 2</p>
+<button onclick="enlarge()">+</button>
+<button onclick="shrink()">-</button>
+<p id='demo'></p>
+ 
+
+ 
 <svg>
 
     <!-- Horizontal Stripe pattern -->
@@ -86,15 +96,17 @@
 			element: document.getElementById('container'),
 			projection: 'mercator',
 			fills: {
-				defaultFill: '#FFFFFF',
-				'USA': '#000000',
+				defaultFill: '#FFFFFF', // map: white
+				'USA': '#000000', //bubble color by fillKey
 				'RUS': '#9467bd',
 				'PRK': '#ff7f0e',
 				'PRC': '#2ca02c',
 				'IND': '#e377c2',
 				'GBR': '#8c564b',
 				'FRA': '#d62728',
-				'PAK': '#7f7f7f'//, // Any hex, color name or rgb/rgba value
+				'PAK': '#7f7f7f',
+				'ZERO': '#7fff00' // empty: yellowgreen
+				//, // Any hex, color name or rgb/rgba value
 //			horizontalStripe: 'url(#horizontal-stripe)',
 //			diagonalStripe: 'url(#diagonal-stripe)',
 //			verticalStripe: 'url(#vertical-stripe)',
@@ -103,7 +115,7 @@
 //			triangle: 'url(#triangle)'
 			},
 			geographyConfig:{
-				borderColor: '#0000FF',
+				borderColor: '#0000FF', // blue border in the map
 				highlightFillColor : function(geo) {
 					return geo['fillColor'] || '#F5F5F5';
 				},
@@ -114,91 +126,25 @@
 				}
 			}
 			
-			}
-			);
+			}   
+		);
 
 ////////////////////////////
 var mat = "polymat.json";//"matrix91.json";
-var nsize = 120; //30
-if(Object.keys(Request).length ==1){
-///////////////////////////////////////////////////////////////////////////////////////
-	// Defining the bubbles dataset: var bombs
-	 //draw bubbles for bombs
-  $.getJSON("dataset.json", function(bombs) {
-       $.getJSON(mat, function(result){  
-  	$.each(result, function(key, val){
-  	     if(key==Request['pos1']){
-  	     	       
-  	     	      var population={};
-		     $.getJSON("population.json", function(r){
-			     $.each( r, function( popkey, popval ){
-				population[popkey]=popval;
-			     });// each population
-			   
-			      ///////////// base /////////
-			     var base={};
-	    		 $.each( r, function( key, value ){
-	    		 	if(value in base){
-	    		 		base[value]++;
-                	 }else{
-                	 	base[value]=1;
-                	 	}
-	    		 }); 
-	    		  ///////////////////////////////
-	    		  
-	              var obj = {};
-                	 $.each( val, function( index, value ){
-                	 	if(value.count==1){
-                	 		//$("div").append(value.id+':'+population[value.id]+ "<br>");
-                	 		if(population[value.id] in obj){
-                	 			obj[population[value.id]]++;
-                	 		}else{
-                	 			obj[population[value.id]]=1;
-                	 		}
-                	 	}
-			 });
-			 
-			 
-       	///////      
-       	      // modify bombs
-       	       for (var i=0; i<bombs.length; i++) {
-			if(bombs[i].genome1000ID in obj){
-				bombs[i].PopulationCount=obj[bombs[i].genome1000ID]/base[bombs[i].genome1000ID];
-				bombs[i].radius = bombs[i].PopulationCount*nsize;	
-				$("#1").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount+"<br>");	
-			
-			}
-		}
-       	       
-		map.bubbles( bombs, {
-			fills: {
-		    defaultFill : 'F5F5F5' 
-			},
-			popupTemplate: function (geo, data) {
-					return ['<div class="hoverinfo">' +  data.idname,
-					'<br/>Population Abbreviation: (' +  data.genome1000ID + ')',
-					'<br/>Population Description: ' +  data.Description + '',
-					'<br/>Population Prevalence: ' + data.PopulationCount + '',
-					'</div>'].join('');
-			},
-			highlightFillColor : function(geo) {
-					return '#FC4E2A';
-			}
-		});// map.bubbles
-		map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
-	///////
-	 }); // population.json
-	     }//key==position
-	  }); //each result
-	 }); //"matrix91.json"
-	
-	 }); //Request["jsonfile"], function(bombs)
-/////////////////////////////////////////////////////////////////////////////////////////////
-}else{
+var nsize = 30;//120 
 	///////////////////////////////////////////////////////////////////////////////////////
+	$( document ).ready(function() {
+    	display();
+    });
 	// Defining the bubbles dataset: var bombs
 	 //draw bubbles for bombs
+  function display(){
   $.getJSON("dataset.json", function(bombs) {
+  		function enlarge() {
+  		  	  nsize=nsize*2;
+  		  	  document.getElementById("demo").innerHTML = ""+nsize+"~"+bombs.length+"<br>";
+			// refresh bubble
+		}
        $.getJSON(mat, function(result){  
            var myarray = [];
            for(i=0;i<Object.keys(Request).length ; i++){
@@ -253,19 +199,23 @@ if(Object.keys(Request).length ==1){
 		 // print out objs{population: count}
 			 
        	///////      
-       	       // modify bombs
-       	       for (var i=0; i<bombs.length; i++) {
+       // modify bombs
+       document.getElementById("val").innerHTML="<p>Prevalence:</p>";
+       for (var i=0; i<bombs.length; i++) {
 			if(bombs[i].genome1000ID in count){
 				bombs[i].PopulationCount=count[bombs[i].genome1000ID]/base[bombs[i].genome1000ID];
-				bombs[i].radius = bombs[i].PopulationCount*nsize;
-				$("#1").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount+"<br>");	
+				 
+				bombs[i].radius = bombs[i].PopulationCount*nsize; //insertionfrequency
+				$("#val").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount.toPrecision(5)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");	
+			}else{ 
+				bombs[i].radius = nsize/10; //????	
+				bombs[i].fillKey = "ZERO";
+				$("#val").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount.toPrecision(5)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");	
+		
 			}
 		}
        	       
 		map.bubbles( bombs, {
-			fills: {
-		    defaultFill : 'F5F5F5' 
-			},
 			popupTemplate: function (geo, data) {
 					return ['<div class="hoverinfo">' +  data.idname,
 					'<br/>Population Abbreviation: (' +  data.genome1000ID + ')',
@@ -274,7 +224,7 @@ if(Object.keys(Request).length ==1){
 					'</div>'].join('');
 			},
 			highlightFillColor : function(geo) {
-					return '#FC4E2A';
+					return '#FC4E2A'; // hightlight:touched by mouse: red
 			}
 		});// map.bubbles
 		map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
@@ -283,12 +233,21 @@ if(Object.keys(Request).length ==1){
 	    
 	//  }); //each result
 	 }); //"matrix91.json"
-	
+	   return bombs;
 	 }); //Request["jsonfile"], function(bombs)
+  }
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-  
-}
+   function enlarge(){
+   	   nsize*=2;
+   	  // document.getElementById("demo").innerHTML = ""+nsize;
+   	   display();
+   }
+ 
+   function shrink(){
+   	   nsize/=2;
+   	   display();
+   }
   
 	// Adding plug-in for labels on Bubbles
 	
@@ -306,7 +265,7 @@ if(Object.keys(Request).length ==1){
               .style("font-size", (options.fontSize || 10) + 'px')
               .style("font-family", options.fontFamily || "sans-serif")
               .style("fill", options.labelColor || "#000")
-              .style('stroke', '#fff')
+              .style('stroke', '#008080') // label font
               .text( datum[options.labelKey]);
               return "bar";
             });
@@ -315,6 +274,8 @@ if(Object.keys(Request).length ==1){
 	//map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
 	
 	//map.legend();
+	
+	
 </script>
 
 
