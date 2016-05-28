@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<div >
+<p>Polymorphic HERV-Ks </p>
+<FORM METHOD=POST ACTION="">
+</FORM>
+ <br>
+ <input type="button" value="Join" onclick="joinSites()">
+ <input type="button" value="Submit" onclick="directTo()">
+ <p id="demo"></p>
+</div>
+
+<script>
+$(document).ready(function() {
+	$.getJSON('chromosomes.json', function(chromosomes){
+			$('FORM').append(generateHtml(chromosomes));
+	});
+ });
+
+function joinSites(){
+ 	var info = getSelectInfo();
+	if(info.newid-1 > info.select.length){
+		alert("Please choose one HERV-K");
+	}else{
+		$.getJSON('chromosomes.json', function(chromosomes){
+			var codes = generateHtml(chromosomes);
+			if(codes ===""){
+				alert("NO more! Please press submit button.");
+			}else{
+				$('FORM').append(codes);
+			}
+		});
+	}
+}
+
+function getSelectInfo(){
+	var tmp = document.getElementsByTagName("select");
+	var regex = new RegExp("^site");
+	var elArray = [];
+	for ( var i = 0; i < tmp.length; i++ ) {
+            if ( regex.test(tmp[i].id) ) {
+                elArray.push(tmp[i].id);
+            }
+     }  
+     
+    var selected = [];
+    for(var i=0; i<elArray.length; i++){
+    	var str = $('#'+elArray[i]+'>option:selected').text(); //$('#site'+i+'>option:selected').text();
+    	if(str!="select site"){
+    		selected.push(str);
+    	}
+	}
+	
+	var newid = 1;
+	if(elArray.length>0){
+		newid = parseInt(elArray[elArray.length-1].substring(4))+1; // "site"+i
+	}
+	var result = {
+		select: selected,
+		newid: newid
+	};
+    return result;
+}
+
+function generateHtml(chromosomes){
+	var sel = getSelectInfo();
+	var newId = sel.newid;
+	
+	var code = "";
+	if(newId <= chromosomes.length){
+			code = "<select id='site"+newId+"'> <option id=0>select site</option>";
+			var options = getOptions(sel, chromosomes);
+			for(var i=0; i<options.length; i++){
+				code += "<option value='"+options[i]+"'>"+options[i]+"</option>";
+			}
+			code += "</select>";
+	}
+
+	return code;
+}
+
+
+function getOptions(sel, chromosomes){
+	var selected = sel.select;
+	return $(chromosomes).not(selected).get();
+}
+
+function directTo(){
+	var selArray = getSelectInfo().select;
+	if(selArray.length==0){
+		alert("Please choose one HERV-K");
+	}else{
+		var to = "";
+		for(var i=0; i<selArray.length; i++){
+			if(i>0){
+				to+="&";
+			}
+			to+= "pos"+(i+1)+"="+selArray[i];
+		}
+		window.location.href = "DataMapsBubble.html?"+to;
+	}
+}
+</script>
+</body>
+</html>
