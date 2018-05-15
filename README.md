@@ -1,18 +1,27 @@
-# polymorphicHERV
-Mining mapped reads for accurately predicting polymorphic human endogenous retroviruses
+K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
 Steps:
+
+1. generating unique k-mer reference
 
 perl generatedataset.pl <rawfile> <LengthofSample> <outputfile>  -> samples.fasta  # len=50
 
 perl filtering.pl <filename> <out>   -> cleandata (sample \t lable) // remove duplications, and multi-labels
 
-perl cleaning.pl <samples.fasta> <cleandata> <clean.fasta>
+perl cleaning.pl <samples.fasta> <cleandata> <reference.fasta>
+ 
 
-bwa index clean.fasta
+2. mapping reads from individual to reference
 
-bwa mem (-T 40) clean.fasta read.fasta > out.sam
+perl findmatch.pl reference.fa fasta_dir/ output_dir/ K [individuals]  
 
-perl count.pl out.sam 
+perl labelcount.pl output_dir/individual.dat Sites output_dir/individual.label
+
+
+3. mixture model for low coverage data
+clustering/
+
+4. Visualization tool
+visualization/Welcome.html
 
 
