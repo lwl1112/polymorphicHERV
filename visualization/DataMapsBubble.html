@@ -4,22 +4,81 @@
 <meta charset="UTF-8">
 <title></title>
 <script src="d3.min.js"></script>
+<script src="d3.min.4.2.2.js"></script>
 <script src="topojson.min.js"></script>
 <script src="datamaps.world.min.js"></script>
 <script src="jquery.min.js"></script>
 <script src="Querystring.js"></script>
+<style>
+.color-box {
+    width: 10px;
+    height: 10px;
+    float: left;
+}
+.orange{
+	font-family: sans-serif; font-size: 12px;
+	fill: #a48c41;
+	stroke: #a48c41;
+}
+.red{
+	font-family: sans-serif; font-size: 12px;
+	fill: red;
+	stroke: red;
+}
+.green{
+	font-family: sans-serif; font-size: 12px;
+	fill: green;
+	stroke: green;
+}
+.blue {
+	font-family: sans-serif; font-size: 12px;
+	fill: blue;
+	stroke: blue;
+}
+.purple{
+	font-family: sans-serif; font-size: 15px;
+	fill: purple;
+	stroke: purple;
+}
+
+</style>
 </head>
 <body> 
 <p><a href='Welcome.html'>back to Welcome page</a></p>
-<div style="width:100%">
-<div id="container" style="float:left;width: 800px; height: 600px;"></div><!--position: relative; -->
-<div id='val' style="float:right; "></div>
+<p id="demo"></p>
+<table>
+<tr>
+<!--td id = 'colors'></td-->
+<td> <svg width="700" height="80">
+ 	<!--text  x="20" y="15">(0, 0.1],&nbsp;&nbsp;&nbsp;10~20%, &nbsp;&nbsp;
+ 	(0.1, 0.2], &nbsp;&nbsp;(0.3, 0.4], &nbsp;&nbsp;(0.4, 0.5], &nbsp;&nbsp; 
+ 	(0.5, 0.6],&nbsp;&nbsp;(0.6, 0.7], &nbsp;&nbsp;(0.7, 0.8], &nbsp;&nbsp;
+ 	(0.8, 0.9],&nbsp;&nbsp;(0.9, 1.0]</text-->
+	<text  x="30" y="15"> Scale: 0 -> 1 </text>
+  	<g id="wrapper" transform="translate(40, 40)">
+  	</g>
+  </svg></td>
+
+<td>
+<svg height="80" width="150">
+  <text x="10" y="15" class="red">African (AFR)</text>
+  <text x="10" y="30" class="orange">American (AMR)</text>
+  <text x="10" y="45" class="green">East Asian (EAS)</text>
+  <text x="10" y="60" class="blue">European (EUR)</text>
+  <text x="10" y="75" class="purple">South Asian (SAS)</text>
+</svg>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>Press +: bubble enlarged by 2 <button onclick="enlarge()">+</button><br>
+Press -&nbsp;: bubble shrinked by 2 <button onclick="shrink()">-&nbsp;</button>
+</td>
+</tr>
+</table>
+<div id="container" style="float:left; position: relative; width: 800px; height: 600px;"></div>
+<!--<div id="container" style="float:left;width: 800px; height: 600px;"></div><!--position: relative; -->
+<div id='val' style="float:right; ">
 </div>
-<p>Press +: bubble enlarged by 2 <br>
-Press -: bubble shrinked by 2</p>
-<button onclick="enlarge()">+</button>
-<button onclick="shrink()">-</button>
-<p id='demo'></p>
+
  
 
  
@@ -78,34 +137,14 @@ Press -: bubble shrinked by 2</p>
 </svg>
 
 <script>
-//	function getColor(d) {
-//			return d > 160 ? '#800026' :
-//			       d > 150  ? '#BD0026' :
-//			       d > 140  ? '#E31A1C' :
-//			       d > 130  ? '#FC4E2A' :
-//			       d > 120   ? '#FD8D3C' :
-//			       d > 110   ? '#FEB24C' :
-//			       d > 100   ? '#FED976' :
-//			                  '#FFEDA0';
-//		}
- 
-
-	
-    var paletteScale = d3.scale.linear().domain([100,200]).range(["#EFEFFF","#02386F"]);
+     
 	var map = new Datamap({
 			element: document.getElementById('container'),
 			projection: 'mercator',
-			fills: {
+			fills: { ////////////// bubble colors
 				defaultFill: '#FFFFFF', // map: white
-				'USA': '#000000', //bubble color by fillKey
-				'RUS': '#9467bd',
-				'PRK': '#ff7f0e',
-				'PRC': '#2ca02c',
-				'IND': '#e377c2',
-				'GBR': '#8c564b',
-				'FRA': '#d62728',
-				'PAK': '#7f7f7f',
-				'ZERO': '#CACFD2' // empty: light grey
+	//			'USA': '#000000', //bubble color by fillKey
+	//			'ZERO': '#CACFD2' // empty: light grey
 				//, // Any hex, color name or rgb/rgba value
 //			horizontalStripe: 'url(#horizontal-stripe)',
 //			diagonalStripe: 'url(#diagonal-stripe)',
@@ -115,7 +154,7 @@ Press -: bubble shrinked by 2</p>
 //			triangle: 'url(#triangle)'
 			},
 			geographyConfig:{
-				borderColor: '#0000FF', // blue border in the map
+				borderColor: '#696969',//border in the map
 				highlightFillColor : function(geo) {
 					return geo['fillColor'] || '#F5F5F5';
 				},
@@ -124,39 +163,56 @@ Press -: bubble shrinked by 2</p>
 					if(!data) {return ;}
 					return [ '<div class="hoverinfo">','<strong>', geo.properties.name, '</strong>','<br>Count: <strong>', data.PopulationCount,'</strong>','</strong>','<br>Description: <strong>', data.Description,'</strong>', '</div>'].join('');
 				}
+			},
+			bubblesConfig: {
+				borderColor: '#FFFFFF',
 			}
-			
 			}   
 		);
 
 ////////////////////////////
+// http://www.1000genomes.org/home
 var mat = "polymat.json";//"matrix91.json";
-var nsize = 30;//120 
+var nsize = 4;
+var popcolor = {'African':'red', 'American':'orange', 'East Asian':'green', 'European':'blue', 'South Asian':'purple'}
 	///////////////////////////////////////////////////////////////////////////////////////
 	$( document ).ready(function() {
     	display();
     });
+    
 	// Defining the bubbles dataset: var bombs
 	 //draw bubbles for bombs
   function display(){
   $.getJSON("dataset.json", function(bombs) {
   		function enlarge() {
   		  	  nsize=nsize*2;
-  		  	  document.getElementById("demo").innerHTML = ""+nsize+"~"+bombs.length+"<br>";
+  		  	  //document.getElementById("demo").innerHTML = ""+nsize+"~"+bombs.length+"<br>";
 			// refresh bubble
 		}
        $.getJSON(mat, function(result){  
            var myarray = [];
-           for(i=0;i<Object.keys(Request).length ; i++){
+           var positionstr = window.location.href;
+           var posstr = positionstr.substr(positionstr.indexOf("?")+1);
+           var Res = posstr.split("&");
+           for(i=0;i<Res.length; i++){
+           	 var req = Res[i]; //pos1=....
+           	 myarray.push(req.substr(req.indexOf("=")+1));
+           }
+           // school server cannot read Request
+           /*for(i=0;i<Object.keys(Request).length ; i++){
 	    	var position = "pos"+(i+1);
 	    	myarray.push(Request[position]);
-	    } 
+	   		 } */
+	    //$("#container").append(myarray+"!<br>");
 	    
            var obj = {};
           $.each(result, function(key, val){
+          //	$("#container").append(key+"<br>");
+	    
   	      if(jQuery.inArray(key, myarray) !== -1){
-                
-                	 $.each( val, function( index, value ){
+               		 $.each( val, function( index, value ){
+                //	 	$("#container").append(value.id+"<br>");
+           
                 	 	if(value.count==1){
                 	 		if(value.id in obj){
                 	 			obj[value.id]++;
@@ -173,6 +229,7 @@ var nsize = 30;//120
 	     $.getJSON("population.json", function(result){
 		$.each( result, function( key, value ){
 			population[key]=value;
+			//$("#container").append(key+" "+value+"<br>");
 		});// each population
 			     
 		     ///////////// base /////////
@@ -199,33 +256,181 @@ var nsize = 30;//120
 		 // print out objs{population: count}
 			 
        	///////      
-       // modify bombs
-       document.getElementById("val").innerHTML="<p>Prevalence:</p>";
-       for (var i=0; i<bombs.length; i++) {
-			if(bombs[i].genome1000ID in count){
-				bombs[i].PopulationCount=count[bombs[i].genome1000ID]/base[bombs[i].genome1000ID];
-				 
-				bombs[i].radius = bombs[i].PopulationCount*nsize; //insertionfrequency
-				$("#val").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount.toPrecision(5)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");	
-			}else{ 
-				bombs[i].radius = nsize/10; //????	
-				bombs[i].fillKey = "ZERO";
-				$("#val").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount.toPrecision(5)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");	
+       /******** modify bombs ***********/
+       // modify prevalence (PopulationCount), radius, color (fillKey)
+       document.getElementById("val").innerHTML="<br>";
+       /*for(i=0;i<Object.keys(Request).length ; i++){
+	    	var position = "pos"+(i+1);
+	    	$("#val").append(Request[position]+"<br>");
+	    } */
+	    for(i=0; i<myarray.length;i++){
+	    	$("#val").append(myarray[i]+"<br>");
+	    }
 		
-			}
+		if(myarray.length==1){
+			$("#val").append("<p><u><B>Frequency:<B></u></p>");
+		}else{
+		$("#val").append("<p><u><B>Co-occurrence:<B></u></p>");
 		}
-       	       
+       sum1 = 0; 
+       sum2 = 0;
+	   sum = 0;
+	   ss = 0;
+	    
+       for (var i=0; i<bombs.length; i++) {
+      		if(bombs[i].genome1000ID in count){
+				bombs[i].PopulationCount = (count[bombs[i].genome1000ID]/base[bombs[i].genome1000ID]).toFixed(5);
+				bombs[i].popsize =  base[bombs[i].genome1000ID];
+				//bombs[i].radius = nsize; //insertionfrequency bombs[i].PopulationCount*
+				$("#val").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");	
+				sum1 += count[bombs[i].genome1000ID];
+				ss += count[bombs[i].genome1000ID];
+			}else{  // prevalence=0%
+				//bombs[i].radius = nsize;  
+				//bombs[i].fillKey = "ZERO";
+				bombs[i].popsize =  base[bombs[i].genome1000ID];
+				$("#val").append(bombs[i].genome1000ID+":"+bombs[i].PopulationCount+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");			
+			}
+			sum2 += base[bombs[i].genome1000ID];
+			sum += base[bombs[i].genome1000ID];
+			
+			if(i==6){
+				$("#val").append("<font color='red'>-- AFR:"+sum1+"/"+sum2+"="+(sum1/sum2).toFixed(5)+"</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");				
+				sum1 = 0;
+				sum2 = 0;
+			}else if(i==10){
+				$("#val").append("<font color='#a48c41'>-- AMR:"+sum1+"/"+sum2+"="+(sum1/sum2).toFixed(5)+"</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");			
+				sum1 = 0;
+				sum2 = 0;
+			}else if(i==15){
+				$("#val").append("<font color='green'>-- EAS:"+sum1+"/"+sum2+"="+(sum1/sum2).toFixed(5)+"</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");			
+				sum1 = 0;
+				sum2 = 0;
+			}else if(i==20){
+				$("#val").append("<font color='blue'>-- EUR:"+sum1+"/"+sum2+"="+(sum1/sum2).toFixed(5)+"</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");			
+				sum1 = 0;
+				sum2 = 0;
+			}else if(i==25){
+				$("#val").append("<font color='purple'>-- SAS:"+sum1+"/"+sum2+"="+(sum1/sum2).toFixed(5)+"</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");			
+				sum1 = 0;
+				sum2 = 0;
+			}
+
+		}
+		 // sum=2069	
+		$("#val").append("<br><i>Co-occurrence</i> = "+ss+"/"+sum+"="+(ss/sum).toFixed(5)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>");			
+
+		// ascending :freq.sort();
+		var freq = bombs.map(function(d) {return d.PopulationCount;});
+	 	var uniquefreq = d3.set(freq).values();
+	 	uniquefreq.sort();
+	 	var minfreq = uniquefreq[0];
+	 	if(uniquefreq[0]==0){
+	 		uniquefreq[0]=0;
+	 		minfreq = uniquefreq[1];
+	 	}
+       	/************** color scale *****************/
+///////
+var linearScale = d3new.scaleLinear()
+	.domain([120, 0])
+	.range([700, 0]);
+
+var sequentialScale = d3new.scaleSequential()
+	.domain([120, 0])
+	.interpolator(d3new.interpolateRainbow);
+
+var myData = d3.range(100);//[90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
+
+d3new.select('#wrapper')
+	.selectAll('circle')
+	.data(myData)
+	.enter()
+	.append('circle')
+	.attr('r', 10)
+	.attr('cx', function(d) {
+		return linearScale(d);
+	})
+	.style('fill', function(d) {
+		return sequentialScale(d);
+	});
+
+	//////////////////////////////
+
+   /*  var paletteScale = d3.scale.linear().domain([0,uniquefreq.length-1]).range(["#CACFD2","#080808"]);//(["#EFEFFF","#02386F"]);
+      document.getElementById("colors").innerHTML = "size scale : small -> large<br>";
+     for(var i = 0; i<=uniquefreq.length-1; i++){
+	 	 $("#colors").append("<div class='color-box' style='background-color: "+ paletteScale(i)+"'></div>");
+	 }*/
+	 //$("#colors").append("<br>"+popcolor['Arican']);
+	for (var i=0; i<bombs.length; i++) {
+			//var ind = uniquefreq.indexOf(bombs[i].PopulationCount);
+		//	 $("#colors").append("<br>"+ bombs[i].PopulationCount+":"+paletteScale(ind));
+		    // $("#demo").append("<br>"+bombs[i].PopulationCount+":"+ (parseInt(bombs[i].PopulationCount*10)*10));
+			 map.options.fills[bombs[i].fillKey]=sequentialScale(bombs[i].PopulationCount*100);
+			 if(bombs[i].PopulationCount==0){
+			 	 map.options.fills[bombs[i].fillKey]="LightGrey";//"#000000";
+			 }
+			 /************** size proportion *****************/
+			/* bombs[i].radius = bombs[i].PopulationCount*1.0/minfreq*nsize;
+			 if (bombs[i].PopulationCount==0)
+			 	 bombs[i].radius = nsize/2.0;*/
+	 }
+	
+
+	////Size Scale by Frequency 
+	/* var minBubbleSize = nsize, maxBubbleSize = 5*nsize;
+	 var sizeScale = d3.scale.linear().domain([0,uniquefreq.length-1]).range([minBubbleSize,maxBubbleSize]);
+	 for (var i=0; i<bombs.length; i++) {
+			var ind = uniquefreq.indexOf(bombs[i].PopulationCount);
+			bombs[i].radius = sizeScale(ind);
+		//	$("#colors").append("<br>"+ bombs[i].PopulationCount+":"+bombs[i].radius);
+	 }*/
+	 //  scale by population size
+	 var minBubbleSize=nsize;	 
+	 var minB=10000;
+	 var maxB=0;
+	 for(var i=0; i<bombs.length; i++)  {
+	 	if(minB>bombs[i].popsize ){
+	 		minB=bombs[i].popsize ;
+	 	}
+	 	if(maxB<bombs[i].popsize ){
+	 		maxB=bombs[i].popsize ;
+	 	}
+	// 	$("#colors").append("<br>"+ bombs[i].popsize );
+	 }
+	 var maxBubbleSize=minBubbleSize/minB*maxB;
+	 var sizeScale = d3.scale.linear().domain([0,bombs.length-1]).range([minBubbleSize,maxBubbleSize]);
+	for (var i=0; i<bombs.length; i++) {
+			 bombs[i].radius = sizeScale(bombs[i].popsize );
+		//	$("#colors").append("<br>"+ bombs[i].PopulationCount+":"+bombs[i].radius);
+	 }
+	 ///////// update filled colors
+	 // map.updateChoropleth({fills:{'USA':'green'}});
+/*https://books.google.com/books?id=RjjlCwAAQBAJ&pg=PA105&lpg=PA105&dq=datamap+update+bubble+color&source=bl&ots=NLXGq7a0hQ&sig=nzdXbZmJd_qj_NlrWKgqvYq63ZE&hl=en&sa=X&ved=0ahUKEwjPtcO8xLrNAhVCKh4KHRvmDJAQ6AEIVTAJ#v=onepage&q=datamap%20update%20bubble%20color&f=false
+The size of each bubble represents the population, and will range in radius from the minimum to the maximum values configured earlier:
+var minBubbleSize = 5, maxBubbleSize = 50;
+var popScale = d3.scale.linear().domain(d3.extent(population)).range([minBubbleSize,maxBubbleSize]);
+Each bubble wil be colored based upon the value of the region. To do this, we set up a mapping between each of the uniuqe names of the regions and a 10-color categorical scale:
+var uniqueRegions = d3.set(regions).values();
+var regionColorMap = d3.scale.ordianl().domain(uniqueRegions).range(d3.scale.category10().range());
+*/
+	/*	for(var i =0; i<bombs.length; i++){
+		$("#demo").append("<br>"+bombs[i].popsize+":"+bombs[i].radius);
+	}*/
+ 
+ 
 		map.bubbles( bombs, {
 			popupTemplate: function (geo, data) {
 					return ['<div class="hoverinfo">' +  data.idname,
 					'<br/>Population Abbreviation: (' +  data.genome1000ID + ')',
 					'<br/>Population Description: ' +  data.Description + '',
+					'<br/>Population Size: ' +  data.popsize + '',
 					'<br/>Population Prevalence: ' + data.PopulationCount + '',
 					'</div>'].join('');
-			},
+			}/*,
 			highlightFillColor : function(geo) {
 					return '#FC4E2A'; // hightlight:touched by mouse: red
-			}
+			}*/
 		});// map.bubbles
 		map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
 	///////
@@ -263,19 +468,27 @@ var nsize = 30;//120
               .attr("x", coords[0] - 12)
               .attr("y", coords[1] + 5)
               .style("font-size", (options.fontSize || 10) + 'px')
-              .style("font-family", options.fontFamily || "sans-serif")
-              .style("fill", options.labelColor || "#000")
-              .style('stroke', '#008080') // label font
+              //.style("font-family", options.fontFamily || "sans-serif")
+              .classed(popcolor[datum.populations5], true)
+             // .style("font-weight", "bold")
+             // .style("fill", options.labelColor || "#000")
+             // .style('stroke', popcolor[datum.populations5]) // label font by populations: #008080 '#1E90FF'
               .text( datum[options.labelKey]);
               return "bar";
-            });
+            });                                                               
           }
+          
 	map.addPlugin('bombLabels', handleBombLabels);
 	//map.bombLabels(bombs,{labelColor:'#F3F5F6', labelKey: 'genome1000ID', fontSize : 10});
-	
+	 
 	//map.legend();
+///////////////////////////////////////////////////////////////
+// get unique values in an array
+/*function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}*/
 	
-	
+
 </script>
 
 
