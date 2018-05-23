@@ -1,6 +1,6 @@
 K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
-Steps:
+Instructions:
 
 1. generating unique k-mer reference
 
@@ -23,5 +23,12 @@ clustering/
 
 4. Visualization tool
 visualization/Welcome.html
+-----------------------------------------------------------------------
+Demo
+1. raw data: short read DNA sequencing (100bps)
+
+2. k-mer counting method
+
+<img src="figures/outline.png" />
 
 
