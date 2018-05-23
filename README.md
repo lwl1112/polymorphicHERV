@@ -52,11 +52,9 @@ Demo
 
 (3) dirichlet process prior for \theta [reference]: to represent the infinite mixure
 
-Truncated Dirichlet process Gaussian mixture model
+Truncated Dirichlet process Gaussian mixture model: hyperparameters (M, e, f, m, t, d, S).
 
 <img src="figures/Dirichlet Process.PNG" />
-
-hyperparameters (M, e, f, m, t, d, S).
 
 6. visualization of prevalence: D3.js map
 
