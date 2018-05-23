@@ -1,6 +1,6 @@
 
 
-e3K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
+K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
 Instructions:
 
