@@ -1,4 +1,4 @@
-3K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
+e3K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
 Instructions:
 
@@ -46,7 +46,7 @@ Demo
 
 (2) model estimation: a latent indicator Z: P(Z=j) = \pi_j
 
-(3) classic way to select the number of components: BIC criterion
+(3) classic way to select the number of components: eg, BIC criterion
 
 (3) dirichlet process prior for \theta [reference]: to represent the infinite mixure
 
