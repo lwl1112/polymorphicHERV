@@ -1,4 +1,4 @@
-K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
+3K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
 Instructions:
 
@@ -44,7 +44,13 @@ Demo
 
 <img src="figures/density_func.PNG" />
 
-(2) dirichlet process prior for \theta [reference]
+(2) model estimation: a latent indicator Z: P(Z=j) = \pi_j
+
+(3) classic way to select the number of components: BIC criterion
+
+(3) dirichlet process prior for \theta [reference]: to represent the infinite mixure
+
+Truncated Dirichlet process Gaussian mixture model
 
 <img src="figures/Dirichlet Process.PNG" />
 
