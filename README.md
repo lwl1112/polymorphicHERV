@@ -50,7 +50,7 @@ Demo
 
 (3) classic way to select the number of components: eg, BIC criterion
 
-(3) dirichlet process prior for \theta [reference]: to represent the infinite mixure
+(4) dirichlet process prior for \theta [reference]: to represent the infinite mixure
 
 Truncated Dirichlet process Gaussian mixture model: hyperparameters (M, e, f, m, t, d, S).
 
