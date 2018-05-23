@@ -1,5 +1,3 @@
-
-
 K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
 Instructions:
@@ -43,9 +41,11 @@ Demo
 5. (Truncated) Dirichlet process Gaussian mixture model
 
 (1) density function for GMM
+
 <img src="figures/density_func.PNG" />
 
 (2) dirichlet process prior for \theta
+
 <img src="figures/Dirichlet Process.PNG" />
 
 6. visualization of prevalence: D3.js map
