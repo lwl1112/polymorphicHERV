@@ -1,3 +1,5 @@
+
+
 e3K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
 Instructions:
@@ -53,6 +55,8 @@ Demo
 Truncated Dirichlet process Gaussian mixture model
 
 <img src="figures/Dirichlet Process.PNG" />
+
+hyperparameters (M, e, f, m, t, d, S).
 
 6. visualization of prevalence: D3.js map
 
