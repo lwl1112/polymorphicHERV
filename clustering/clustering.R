@@ -1,8 +1,3 @@
-#setwd("C:/Users/wul135/Downloads/DPGMM")#setwd("~/Desktop/coverage/DPGMM")
-#setwd("~/Desktop/coverage/DPGMM")
-rm(list = ls())
-setwd("C:/Users/wul135-admin/Dropbox/paper/clustering_codes")
-setwd("C:/Users/lwl11/Dropbox/paper/clustering_codes")
 library(ggplot2)
 library(cowplot)
 library(RColorBrewer)
@@ -18,41 +13,8 @@ source("modesearchmerge.R")
 source("classprobs_c.R")
 
 ## Get data
-#site = 18 # 2 ### which site
-#ratio <- read.table("matrix_Oct17/mat.1kg.50.oct17.dat")
 ratio<-read.csv("../matrix/mat_1kg_nT.csv",header = TRUE, row.names = 1)#matrix_Oct17
 coverage <- read.table("../matrix/coverage2565_1-28")
-ratio2<-read.csv("../matrix/mat_nT_lgl_highcov.csv", header=TRUE, row.names=1)
-DF2<-data.frame(ratio2[,1:89],coverage=ratio2[90])
-site=38
-names=colnames(ratio)[1:51]
-names[site]
-DF<-data.frame(ratio[1:51,1:89], coverage=ratio[90][1:51,1])#89
-
-#################### 92:94 ####################
-#male <- scan("male_no.dat", what="", sep="\n")[1:1244]
-#ratio <- ratio[male, ]
-#coverage <- coverage[male,]
-#DF <- data.frame(ratio, coverage = coverage)
-###
-#ratio2<- read.table("matrix/mat.1kg_lgl.50.dat")
-ratio_2 <- read.csv("matrix_Oct17/mat_nT_1kg_lgl.csv", header=TRUE, row.names = 1)
-ratio2<-ratio_2[2536:2586,1:94]
-cov2 <- read.table("matrix/coverage_1kg_lgl")
-DF2<-data.frame(ratio2, coverage = cov2$V1[2536:2586])
-df2 <- DF2[,c(site,95)]
-df2[,2] <- log(df2[,2])  # log(coverage)
-x2 = df2
-X2 = scale(x2)
-##
-ratio3 <- read.table("matrix/mat.lgl.50.dat")
-coverage3 <- read.table("matrix/coverage_LGL")
-DF2<-data.frame(ratio3, coverage = coverage3$V1)
-df2 <- DF2[,c(site,97)]
-df2[,2] <- log(df2[,2])  # log(coverage)
-x2 = df2
-X2 = scale(x2)
-#DF<-data.frame(ratio3, coverage = coverage3$V1)
 
 ########################################
 DF <- data.frame(ratio[1:94], coverage = coverage$V1[1:2535])#94
@@ -64,21 +26,12 @@ names <- scan("../matrix/sortedSites.oct17", what="", sep="\n")
 names[site]
 #### get data matrix of size n x 2
 for(site in 93:94){ 
-  df <- DF[,c(site,95)]#97### replace with bio transfrom
+  df <- DF[,c(site,95)]#ratio, cov
   #df[,1]<-log(df[,1])
   df[,2] <- log(df[,2])  # log(coverage)
   x = df
   X = scale(x) ## standardization
   
-  DF<-data.frame(ratio=mydata$chr1_155596457_155605636, coverage=mydata$coverage, populations=mydata$population)
-  AFR=which(DF$populations=="AFR")
-  EUR=which(DF$populations=="EUR")
-  
-  df<-DF[EUR,1:2]
-  n=nrow(df)
-  df[,2] <- log(df[,2])  # log(coverage)
-  x = df
-  X = scale(x) 
   #### Initialization ####
   lambda <- 2#2 ## equivalent to t in the paper  ##### lwl
   phi<- 5#5 #samller phi, more # clusters?
