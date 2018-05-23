@@ -20,7 +20,7 @@ coverage <- read.table("../matrix/coverage2565_1-28")
 DF <- data.frame(ratio[1:94], coverage = coverage$V1[1:2535])#94
 n = nrow(DF)
 
-p = 2 #final
+p = 2 #final, d in the paper. 2-dimension
 
 names <- scan("../matrix/sortedSites.oct17", what="", sep="\n")
 names[site]
@@ -42,7 +42,7 @@ for(site in 93:94){
   m <- rep(0, p)     #replicates the values # m: p-vector prior mean
   J = 15L; # upper bound for the number of normal components    ##### lwl: alpha_EM
   e = 10; f = 1; # alpha ~ G(e,f)
-  #riwish(delta, Phi): IW (k+2,kK): p is k,  phi is K.
+  #riwish(delta, Phi): IW (d+2,SId):
   TT = 5000
   #################################
   ######Initialize parameters for MCMC
@@ -64,8 +64,10 @@ for(site in 93:94){
     Sigma[[1]][,,j] <- riwish(delta, Phi) #generates a random draw from the inverse Wishart distribution.
     mu[, j, 1] <- mvrnorm(1, m, lambda*Sigma[[1]][,,j]) # u_j | Sigma_j ~ N(m, t Sigma_j): t is lambda here
   }
+  #Gibber Sampler: draw samples from the posterior distribution
   source("Gibbs_DP.R")
   
+  #identify modes of the posterior uses a  expectation-maximization procedure for DPMM
   LpEM = -6.1110e+005; 
   for(rr in 1:10){ # Number of EM algorithms                    ##### lwl
     inter <- TT-(rr-1)*100 # Change the starting point for EM algorithms by using different MCMC samples. Make sure inter > 0.
@@ -97,26 +99,10 @@ for(site in 93:94){
   alpha = classprobs_c(W_final, M_final, Sigma_final, X, tmp$C)  # posterior probabilities for each patient to each cluster.
   cluster <- apply(alpha, 1, which.max)
   unique(cluster)
-  ##########################
-  namesLGL <- scan("names_LGL", what="", sep="\n")
-  m<-matrix(0,51,1)
-  alpha2 = classprobs_c(W_final, M_final, Sigma_final, X2, tmp$C) 
-  cluster2 <- apply(alpha2, 1, which.max)
-  DFres2 <- data.frame(DF2[,c(site,95)], "Z" = cluster2)
-  clusterplot2 <- ggplot(DFres2,aes_string(colnames(DFres2)[1], colnames(DFres2)[2])) + geom_point(aes(colour = Z), size = 1, alpha = 0.5) +
-    #guides(colour=FALSE) + 
-    scale_color_gradientn(colours = rev(brewer.pal(10, "Spectral"))) +
-    theme_bw() +
-    xlab(expression(n/T)) + ylab("coverage")+xlim(0,1.25)
-  clusterplot2
-  for(i in 1:81){
-    clusterplot2 <- clusterplot2 + annotate("text", x=DFres2[i, 1], y=DFres2[i, 2], label=row.names(df2)[i],size=5)
-  }
+
   ###### plot #####
   DFres <- data.frame(DF[,c(site,95)], "Z" = cluster)#97#96(.oct17)
-  DFres <- data.frame(DF[AFR,1:2],"Z"=cluster)
-  DFres <- data.frame(DF[EUR,1:2],"Z"=cluster)
-  DFres <- data.frame(DF, "Z" = cluster)
+  
   clusterplot <- ggplot(DFres,aes_string(colnames(DFres)[1], colnames(DFres)[2])) + geom_point(aes(colour = (Z)), size = 1, alpha = 0.5) +
     #guides(colour=FALSE) + 
     scale_color_gradientn(colours =  rev(brewer.pal(10, "Spectral"))) +
@@ -126,29 +112,10 @@ for(site in 93:94){
     labs(title=names[site])+theme(plot.title = element_text(hjust = 0.5))
   clusterplot
   
-  clusterplot <- ggplot(DFres,aes_string(colnames(DFres)[1], colnames(DFres)[2])) + geom_point(aes(colour = (Z)), size = 1, alpha = 0.5) +
-    #guides(colour=FALSE) + 
-    #scale_color_gradientn(colours =  rev(brewer.pal(10, "Spectral"))) +
-    scale_color_gradientn(colours = c("#5E4FA2" ,"#3288BD", "#66C2A5" ,"#ABDDA4", "#E6F598" ,"#FEE08B" ,"#FDAE61", "#F46D43" ,"#D53E4F", "#9E0142")) +
-    
-    theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-    xlab(expression(n/T)) + ylab("coverage")+
-    #xlim(0,1.25)+ 
-    labs(title="chr12_55727215_55728183 (K=50)")+theme(plot.title = element_text(hjust = 0.5))
-  clusterplot
-  # c("#5E4FA2" ,"#3288BD", "#66C2A5" ,"#ABDDA4", "#E6F598" ,"#FEE08B" ,"#FDAE61", "#F46D43" ,"#D53E4F", "#9E0142")) +
-  
-  
-  #1,3,4,5
-  patientindex <- scan("../matrix/28_patients.index.txt", what='', sep='\n') 
-  
     
  #######################
-  # malepatient <- intersect(patientindex,male) 
+  # mark 28 individuals in the pilot data
   for (i in 1:28) { #28: 11 male #97#96
-    #clusterplot <- clusterplot + annotate("text", x=DF[strtoi(patientindex[i]), site], y=DF[strtoi(patientindex[i]), 95], label=as.character(i),size=5)
-    #clusterplot <- clusterplot + annotate("text", x=DF[malepatient[i], site], y=DF[malepatient[i], 97], label=as.character(which(malepatient[i]==patientindex)),size=5)
-    #print(cluster[strtoi(patientindex[i])])
     clusterplot <- clusterplot + annotate("text", x=DF$chr12_55727215_55728183[strtoi(patientindex[i])], y=DF$coverage[strtoi(patientindex[i])], label=as.character(i),size=4, col='black')
     clusterplot <- clusterplot + annotate("text", x=DF$chr12_55727215_55728183[2535+i], y=DF$coverage[2535+i], label=as.character(i),size=4, col='red')
     }
