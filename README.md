@@ -44,7 +44,7 @@ Demo
 
 <img src="figures/density_func.PNG" />
 
-(2) dirichlet process prior for \theta
+(2) dirichlet process prior for \theta [reference]
 
 <img src="figures/Dirichlet Process.PNG" />
 
