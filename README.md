@@ -1,6 +1,8 @@
+
+
 K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data
 
-Steps:
+Instructions:
 
 1. generating unique k-mer reference
 
@@ -23,5 +25,39 @@ clustering/
 
 4. Visualization tool
 visualization/Welcome.html
+-----------------------------------------------------------------------
+Demo
+1. raw data: short read DNA sequencing (100bps)
 
+2. k-mer counting method
 
+<img src="figures/outline.png" />
+
+3. difficulties
+
+<img src="figures/k=70_2.png" />
+
+4. clustering results (from mixture models)
+<img src="figures/chr12_557_k50.png" />
+
+5. (Truncated) Dirichlet process Gaussian mixture model
+
+(1) density function for GMM
+
+<img src="figures/density_func.PNG" />
+
+(2) model estimation: a latent indicator Z: P(Z=j) = \pi_j
+
+(3) classic way to select the number of components: eg, BIC criterion
+
+(4) dirichlet process prior for \theta [reference]: to represent the infinite mixure
+
+Truncated Dirichlet process Gaussian mixture model: hyperparameters (M, e, f, m, t, d, S).
+
+<img src="figures/Dirichlet Process.PNG" />
+
+6. visualization of prevalence: D3.js map
+
+http://personal.psu.edu/~wul135/visualization/Welcome.html
+
+<img src="figures/map.png" />
