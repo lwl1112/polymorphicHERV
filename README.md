@@ -25,7 +25,7 @@ clustering/
 
 4. Visualization tool
 visualization/Welcome.html
-<!-----------------------------------------------------------------------
+-----------------------------------------------------------------------
 Demo
 1. raw data: short read DNA sequencing (100bps)
 
@@ -61,4 +61,4 @@ Truncated Dirichlet process Gaussian mixture model: hyperparameters (M, e, f, m,
 http://personal.psu.edu/~wul135/visualization/Welcome.html
 
 <img src="figures/map.png" />
--->
+
