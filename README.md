@@ -58,7 +58,7 @@ Truncated Dirichlet process Gaussian mixture model: hyperparameters (M, e, f, m,
 
 6. visualization of prevalence: D3.js map
 
-http://personal.psu.edu/~wul135/visualization/Welcome.html
+http://personal.psu.edu/~wul135/visualization/
 
 <img src="figures/map.png" />
 
