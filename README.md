@@ -14,6 +14,7 @@ Instructions:
 5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 (Tscript())
 
 // bwa: query name too long: rewrite header
+
 // follow sortedSites order :  t.pl(Torder()) 
 
 -- calculate n : mapping dataset to the references -- 
@@ -23,10 +24,15 @@ Instructions:
 6. perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  (output: hashlabels_1000g_50/)
 7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
 8. perl concate_tomatrix.pl T.50 peopleIDs hashlabels_1000g_50/ mat.1kg.50.dat (generate matrix of n/T ratio: mat.1kg.50.dat)
+
 //peopleIDs_sample:
+
 HG00096
+
 HG00097
+
 HG00099
+
 HG00100
 
 ===================================================================
