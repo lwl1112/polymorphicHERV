@@ -8,6 +8,7 @@ polymat.json // matrix (generatejson.pl poly mat.dat(20 rows) population > polym
 
 population.json // population information (generatepopulation.pl, remove last ,) 
 
+-------------------------------
 
 validate json
 
