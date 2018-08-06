@@ -50,7 +50,7 @@ foreach $l (@sortedlabel){
 
 @k = keys%labels;
 $s = @k;
-if($s+$zeros!=96){ # in sortedSites
+if($s+$zeros!=94){
 	print "$s\t$zeros\n";
 }
 close file1;

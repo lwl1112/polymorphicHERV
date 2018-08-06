@@ -4,7 +4,7 @@
 
 #$start_run = time();
 open(file, @ARGV[0]); # finalunique_withrc.fa
-$fastadir = @ARGV[1]; # input dir: patient_fasta70/
+$fastadir = @ARGV[1]; # input dir: patient_fasta50/
 $hashlabeldir = @ARGV[2]; # output dir: hashlabels/
 $K = @ARGV[3];
 %data=();
