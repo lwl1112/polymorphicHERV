@@ -25,15 +25,7 @@ Instructions:
 7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
 8. perl concate_tomatrix.pl T.50 peopleIDs hashlabels_1000g_50/ mat.1kg.50.dat (generate matrix of n/T ratio: mat.1kg.50.dat)
 
-//peopleIDs_sample:
 
-HG00096
-
-HG00097
-
-HG00099
-
-HG00100
 
 ===================================================================
 
