@@ -9,6 +9,9 @@ Instructions:
 3. perl unique.pl total_withlabel_50.fa unique.50.fa  (generate unique k-mers: unique.50.fa)
 4. perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa (generate references: unqiue k-mers with reverse complement. output: unique.withrc.50.fa)
 
+k-mer references can be downloaded:
+https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0
+
 -- calculate T -- 
 
 5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 (Tscript())
@@ -16,6 +19,8 @@ Instructions:
 // bwa: query name too long: rewrite header
 
 // follow sortedSites order :  t.pl(Torder()) 
+
+T.50 is the # of unique k-mers in each virus
 
 -- calculate n : mapping dataset to the references -- 
 
@@ -25,7 +30,19 @@ Instructions:
 7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
 8. perl concate_tomatrix.pl T.50 peopleIDs hashlabels_1000g_50/ mat.1kg.50.dat (generate matrix of n/T ratio: mat.1kg.50.dat)
 
+dataset_samples can be downloaded as follows:
 
+https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
+
+peopleIDs_sample:
+
+HG00096
+
+HG00097
+
+HG00099
+
+HG00100
 
 ===================================================================
 
