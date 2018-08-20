@@ -1,4 +1,4 @@
-# credit to Dr. Lynn Lin (llin@psu.edu)
+# credit to Dr. Lin Lin (llin@psu.edu)
 # Dirchlet Process Gaussian Mixture Model
 # input: matrix of n/T ratio, depth
 # parameters tuning
