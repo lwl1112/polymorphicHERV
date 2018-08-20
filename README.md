@@ -53,8 +53,10 @@ clustering/analysis.R
 ====================================================================
 
 -- Visualization tool --
+http://personal.psu.edu/~wul135/visualization/
 
-visualization/index.html
+codes can be downloaded in github: visualization/ folder.
+
 
 <!-----------------------------------------------------------------------
 Demo
