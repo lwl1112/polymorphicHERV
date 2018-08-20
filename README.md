@@ -48,11 +48,12 @@ HG00100
 
 -- mixture model for low coverage data --
 
-clustering/analysis.R
+clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
 ====================================================================
 
 -- Visualization tool --
+
 http://personal.psu.edu/~wul135/visualization/
 
 codes can be downloaded in github: visualization/ folder.
