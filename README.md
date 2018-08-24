@@ -22,7 +22,7 @@ https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0
 5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
   // Tscript(); T.50 can be downloaded in github
 
-// dataset_samples can be downloaded as follows: 
+// dataset_samples can be downloaded as follows:  
 https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 
 // peopleIDs_sample can be downloaded in github
