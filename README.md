@@ -1,8 +1,22 @@
 <bold> K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data </bold>
 
-Instructions:
+===================================================================
 
--- generate k-mer references --
+-- generate n/T matrix --
+
+```diff
++ green: input file/directory; 
+- red: output file/directory.
+```
+
+scripts example:
+
+1. perl generate.pl ```diff - HERVK_alleles/  + kmer50pervirus/ ``` 50  (generate 50-mers per virus; input: kmer50pervirus/, k=50; output: kmer50pervirus/)
+2. perl labels.pl total_withlabel_50.fa kmer50pervirus/ (labeling each k-mer. output: total_withlabel.fa)
+3. perl unique.pl total_withlabel_50.fa unique.50.fa  (generate unique k-mers: unique.50.fa)
+4. perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa (generate references: unqiue k-mers with reverse complement. output: unique.withrc.50.fa)
+
+<!-- generate k-mer references --
 
 1. perl generate.pl HERVK_alleles/ kmer50pervirus/ 50  (generate 50-mers per virus; input: kmer50pervirus/, k=50; output: kmer50pervirus/)
 2. perl labels.pl total_withlabel_50.fa kmer50pervirus/ (labeling each k-mer. output: total_withlabel.fa)
@@ -43,7 +57,7 @@ HG00097
 HG00099
 
 HG00100
-
+-->
 ===================================================================
 
 -- mixture model for low coverage data --
