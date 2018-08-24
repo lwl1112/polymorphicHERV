@@ -20,12 +20,9 @@ scripts example:
 https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0
 
 5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
-  // Tscript(); T.50 can be downloaded in github
 
 // dataset_samples can be downloaded as follows:  
 https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
-
-// peopleIDs_sample can be downloaded in github
 
 6. perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
 7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
