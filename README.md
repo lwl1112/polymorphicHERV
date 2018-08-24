@@ -27,7 +27,6 @@ https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 6. perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
 7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
 8. perl concate_tomatrix.pl T.50 peopleIDs_sample hashlabels_1000g_50/ mat.1kg.50.dat  
-
 // peopleIDs is the full list for KGP dataset
   
 
