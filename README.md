@@ -16,7 +16,7 @@ scripts example:
 3. perl unique.pl total_withlabel_50.fa unique.50.fa 
 4. perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa 
 
-k-mer references can be downloaded:
+// k-mer references can be downloaded:
 https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0
 
 5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
