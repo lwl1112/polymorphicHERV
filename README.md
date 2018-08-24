@@ -3,18 +3,35 @@
 ===================================================================
 
 -- generate n/T matrix --
-
+<!--
 ```diff
 + green: input file/directory; 
 - red: output file/directory.
 ```
-
+-->
 scripts example:
 
-1. perl generate.pl ```diff - HERVK_alleles/  + kmer50pervirus/ ``` 50  (generate 50-mers per virus; input: kmer50pervirus/, k=50; output: kmer50pervirus/)
-2. perl labels.pl total_withlabel_50.fa kmer50pervirus/ (labeling each k-mer. output: total_withlabel.fa)
-3. perl unique.pl total_withlabel_50.fa unique.50.fa  (generate unique k-mers: unique.50.fa)
-4. perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa (generate references: unqiue k-mers with reverse complement. output: unique.withrc.50.fa)
+1. perl generate.pl HERVK_alleles/  kmer50pervirus/ 50  
+2. perl labels.pl total_withlabel_50.fa kmer50pervirus/ 
+3. perl unique.pl total_withlabel_50.fa unique.50.fa 
+4. perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa 
+
+k-mer references can be downloaded:
+https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0
+
+5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
+  // Tscript(); T.50 can be downloaded in github
+
+// dataset_samples can be downloaded as follows: 
+https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
+
+// peopleIDs_sample can be downloaded in github
+
+6. perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
+7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
+8. perl concate_tomatrix.pl T.50 peopleIDs hashlabels_1000g_50/ mat.1kg.50.dat 
+
+
 
 <!-- generate k-mer references --
 
