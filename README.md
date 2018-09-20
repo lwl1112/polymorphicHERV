@@ -1,8 +1,4 @@
-<bold> K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data </bold>
 
-===================================================================
-
--- generate n/T matrix --
 <!--
 ```diff
 + green: input file/directory; 
@@ -14,9 +10,12 @@
 Visualize distribution of HERV-K repeats in the 1000 genomes dataset at
 http://personal.psu.edu/~wul135/visualization/
 
-codes can be downloaded in github: visualization/ folder.
+codes can be downloaded from ```visualization/``` folder.
 
-### K-mer based mining approach for HERV-Ks
+
+## **K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data**
+
+### generate n/T matrix --
 
 ### Step 1: Generate reference k-mers
 (The final output file can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
