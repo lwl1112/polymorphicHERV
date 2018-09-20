@@ -33,7 +33,7 @@ where kmer50pervirus/ is a temporary directory.
 ### Step 2: Calculate T
 (The final output [T.50] is in the Github.)
 ``` 
-perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50 
+$ perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50 
 ```
 where ```tscript.may.pbs``` is a pbs script can be run in a server.
 
