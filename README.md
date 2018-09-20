@@ -28,6 +28,7 @@ $ perl labels.pl [o]total_withlabel_50.fa [i]kmer50pervirus/
 $ perl unique.pl [i]total_withlabel_50.fa [o]unique.50.fa 
 $ perl uniquewithrc.pl [i]unique.50.fa [o]unique.withrc.50.fa 
 ```
+where kmer50pervirus/ is a temporary directory.
 
 ### Step 2: Calculate T
 Example file can also be downloaded from https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
@@ -43,7 +44,8 @@ $ perl labelcount.pl [i]hashlabels_1000g_50/HG00096.dat [i]sortedSites [o]hashla
 $ perl concate_tomatrix.pl [i]T.50 [i]peopleIDs_sample [i]hashlabels_1000g_50/ [o]mat.1kg.50.dat  
 // peopleIDs is the full list for KGP dataset
 ```
-where HG00096 HG00097 HG00099 HG00100 are sample names.
+where hashlabels_1000g_50/ is a temporary directory, and 
+HG00096 HG00097 HG00099 HG00100 are sample names.
 
 <!-- generate k-mer references --
 
