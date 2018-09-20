@@ -31,12 +31,12 @@ $ perl uniquewithrc.pl [i]unique.50.fa [o]unique.withrc.50.fa
 where kmer50pervirus/ is a temporary directory.
 
 ### Step 2: Calculate T
+(The final output [T.50] is in the Github.)
 ``` 
 perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50 
 ```
 where ```tscript.may.pbs``` is a pbs script can be run in a server.
 
-The final result, [T.50], is in the Github.
 
 ### Step 3: Experiments: mapping to the k-mer references
 
