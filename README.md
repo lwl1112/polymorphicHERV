@@ -38,6 +38,10 @@ perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50
 where ```tscript.may.pbs``` is an output file can be run in a server.
 
 ### Step 3: Experiments: mapping to the references
+
+dataset_samples can be downloaded as follows:
+
+https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 ```
 $ perl findmatch.pl [i]unique.withrc.50.fa [i]dataset_samples/ [o]hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
 $ perl labelcount.pl [i]hashlabels_1000g_50/HG00096.dat [i]sortedSites [o]hashlabels_1000g_50/HG00096.label
@@ -91,7 +95,7 @@ HG00100
 -->
 ===================================================================
 
--- mixture model for low coverage data --
+##  mixture model for low coverage data 
 
 clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
