@@ -17,7 +17,7 @@ codes can be downloaded from ```visualization/``` folder.
 
 Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
 
-### generate n/T matrix --
+### -- generate n/T matrix --
 
 ### Step 1: Generate reference k-mers
 (The final output file can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
@@ -37,7 +37,7 @@ perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50
 ```
 where ```tscript.may.pbs``` is an output file can be run in a server.
 
-### Step 3: Experiments: mapping to the references
+### Step 3: Experiments: mapping to the k-mer references
 
 dataset_samples can be downloaded as follows:
 
@@ -93,13 +93,11 @@ HG00099
 
 HG00100
 -->
-===================================================================
 
-##  mixture model for low coverage data 
+###  -- mixture model for low coverage data --
 
 clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
-====================================================================
 
 
 <!-----------------------------------------------------------------------
