@@ -15,35 +15,35 @@ codes can be downloaded from ```visualization/``` folder.
 
 ## **K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data**
 
+Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
+
 ### generate n/T matrix --
 
 ### Step 1: Generate reference k-mers
 (The final output file can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
 
 ```
-$ perl generate.pl HERVK_alleles/  kmer50pervirus/ 50  
-$ perl labels.pl total_withlabel_50.fa kmer50pervirus/ 
-$ perl unique.pl total_withlabel_50.fa unique.50.fa 
-$ perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa 
+$ perl generate.pl [i]HERVK_alleles/  [o]kmer50pervirus/ 50  
+$ perl labels.pl [o]total_withlabel_50.fa [i]kmer50pervirus/ 
+$ perl unique.pl [i]total_withlabel_50.fa [o]unique.50.fa 
+$ perl uniquewithrc.pl [i]unique.50.fa [o]unique.withrc.50.fa 
 ```
-where, ```kmer50pervirus/``` directory is .... 
 
 ### Step 2: 
 Example file can also be downloaded from https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 ``` 
-perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
+perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50 
 ```
-where ```tscript.may.pbs``` is .... 
-and ```HERVK_alleles_may``` is ...
+where ```tscript.may.pbs``` is an output file can be run in a server.
 
 ### Step 3: 
 ```
-$ perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
-$ perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
-$ perl concate_tomatrix.pl T.50 peopleIDs_sample hashlabels_1000g_50/ mat.1kg.50.dat  
+$ perl findmatch.pl [i]unique.withrc.50.fa [i]dataset_samples/ [o]hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
+$ perl labelcount.pl [i]hashlabels_1000g_50/HG00096.dat [i]sortedSites [o]hashlabels_1000g_50/HG00096.label
+$ perl concate_tomatrix.pl [i]T.50 [i]peopleIDs_sample [i]hashlabels_1000g_50/ [o]mat.1kg.50.dat  
 // peopleIDs is the full list for KGP dataset
 ```
-
+where HG00096 HG00097 HG00099 HG00100 are sample names.
 
 <!-- generate k-mer references --
 
