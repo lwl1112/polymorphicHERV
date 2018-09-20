@@ -20,7 +20,7 @@ Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
 ### -- generate n/T matrix --
 
 ### Step 1: Generate reference k-mers
-(The final output file can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
+(The final output file [unique.withrc.50.fa] can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
 
 ```
 $ perl generate.pl [i]HERVK_alleles/  [o]kmer50pervirus/ 50  
@@ -31,15 +31,16 @@ $ perl uniquewithrc.pl [i]unique.50.fa [o]unique.withrc.50.fa
 where kmer50pervirus/ is a temporary directory.
 
 ### Step 2: Calculate T
-Example file can also be downloaded from https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 ``` 
 perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50 
 ```
-where ```tscript.may.pbs``` is an output file can be run in a server.
+where ```tscript.may.pbs``` is a pbs script can be run in a server.
+
+The final result, [T.50], is in the Github.
 
 ### Step 3: Experiments: mapping to the k-mer references
 
-dataset_samples can be downloaded as follows:
+Example files [dataset_samples/] can be downloaded as follows:
 
 https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 ```
