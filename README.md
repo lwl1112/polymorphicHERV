@@ -29,14 +29,14 @@ $ perl unique.pl [i]total_withlabel_50.fa [o]unique.50.fa
 $ perl uniquewithrc.pl [i]unique.50.fa [o]unique.withrc.50.fa 
 ```
 
-### Step 2: 
+### Step 2: Calculate T
 Example file can also be downloaded from https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
 ``` 
 perl t.pl HERVK_alleles/ [o]tscript.may.pbs 50 
 ```
 where ```tscript.may.pbs``` is an output file can be run in a server.
 
-### Step 3: 
+### Step 3: Experiments: mapping to the references
 ```
 $ perl findmatch.pl [i]unique.withrc.50.fa [i]dataset_samples/ [o]hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
 $ perl labelcount.pl [i]hashlabels_1000g_50/HG00096.dat [i]sortedSites [o]hashlabels_1000g_50/HG00096.label
