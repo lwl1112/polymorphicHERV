@@ -9,26 +9,41 @@
 - red: output file/directory.
 ```
 -->
-scripts example:
+## Visualization tool 
 
-1. perl generate.pl HERVK_alleles/  kmer50pervirus/ 50  
-2. perl labels.pl total_withlabel_50.fa kmer50pervirus/ 
-3. perl unique.pl total_withlabel_50.fa unique.50.fa 
-4. perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa 
+Visualize distribution of HERV-K repeats in the 1000 genomes dataset at
+http://personal.psu.edu/~wul135/visualization/
 
-// k-mer references can be downloaded:
-https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0
+codes can be downloaded in github: visualization/ folder.
 
-5. perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
+### K-mer based mining approach for HERV-Ks
 
-// dataset_samples can be downloaded as follows:  
-https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
+### Step 1: Generate reference k-mers
+(The final output file can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
 
-6. perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
-7. perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
-8. perl concate_tomatrix.pl T.50 peopleIDs_sample hashlabels_1000g_50/ mat.1kg.50.dat  
+```
+$ perl generate.pl HERVK_alleles/  kmer50pervirus/ 50  
+$ perl labels.pl total_withlabel_50.fa kmer50pervirus/ 
+$ perl unique.pl total_withlabel_50.fa unique.50.fa 
+$ perl uniquewithrc.pl unique.50.fa unique.withrc.50.fa 
+```
+where, ```kmer50pervirus/``` directory is .... 
+
+### Step 2: 
+Example file can also be downloaded from https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
+``` 
+perl t.pl HERVK_alleles_may/ tscript.may.pbs 50 
+```
+where ```tscript.may.pbs``` is .... 
+and ```HERVK_alleles_may``` is ...
+
+### Step 3: 
+```
+$ perl findmatch.pl unique.withrc.50.fa dataset_samples/ hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
+$ perl labelcount.pl hashlabels_1000g_50/HG00096.dat sortedSites hashlabels_1000g_50/HG00096.label
+$ perl concate_tomatrix.pl T.50 peopleIDs_sample hashlabels_1000g_50/ mat.1kg.50.dat  
 // peopleIDs is the full list for KGP dataset
-  
+```
 
 
 <!-- generate k-mer references --
@@ -80,12 +95,6 @@ HG00100
 clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
 ====================================================================
-
--- Visualization tool --
-
-http://personal.psu.edu/~wul135/visualization/
-
-codes can be downloaded in github: visualization/ folder.
 
 
 <!-----------------------------------------------------------------------
