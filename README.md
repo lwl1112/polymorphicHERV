@@ -41,7 +41,7 @@ where ```tscript.may.pbs``` is a pbs script can be run in a server.
 ### Step 3: Experiments: mapping to the k-mer references
 3.1 download bam files from 1000 Genomes Project.
 
-3.2 using the bed file to extract mapped reads based on the coresponding coordiantes. 
+3.2 using the bed file to extract mapped reads based on the corresponding coordinates. 
 
    samtools view -b -L  *.bed  completed.bam > extracted.bam
    
