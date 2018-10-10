@@ -108,11 +108,11 @@ HG00099
 HG00100
 -->
 
-###  -- mixture model for low coverage data --
+###  -- mixture model for low coverage (depth) data --
 
 clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
-
+Note: only need to implement this step when the coverage (depth) of input sequence data is low. (i.e, <20).
 
 <!-----------------------------------------------------------------------
 Demo
