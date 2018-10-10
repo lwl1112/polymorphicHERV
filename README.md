@@ -51,7 +51,7 @@ the bed file can be downloaded in 'bed files/':
   
   HERVK_hg38_sort_01apr2018.bed     (hg38 build)
 
-3.3 convert bam files to fasta files.
+3.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50.
 
 Example files [dataset_samples/] can be downloaded as follows:
 
