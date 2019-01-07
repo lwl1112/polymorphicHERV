@@ -6,14 +6,14 @@ This is an instruction for implementing an visualized distribution tool for poly
 
 then converted into a json file: population.json as follows.
 ```
-perl generatepopulation.pl population population.json
+perl generate_json/generatepopulation.pl generate_json/population generate_json/population.json
 ```
 
 1.2 prepare a matrix: mat.dat, each row indicating predictions of individuals (0: absense, 1: presence) for one polymporhic HERV-K ,
 
 then converted into a json file: polymat.json as follows.
 ```
-perl generatejson.pl poly mat.dat population polymat.json   
+perl generate_json/generatejson.pl generate_json/poly generate_json/mat.dat generate_json/population generate_json/polymat.json   
 ```
 
 2. explanations for other json data files:
