@@ -1,19 +1,18 @@
 This is an instruction for implementing an visualized distribution tool for polymorphic HERV-K. 
 
-1. User inputs: 
+1. How to generate user inputs: population.json, polymat.json. 
+codes can be found in ```generate_json/```
 
 1.1 get population information from the 1000 genomes dataset: population, 
-
-then converted into a json file: population.json as follows.
+then converted into population.json.
 ```
-perl generate_json/generatepopulation.pl generate_json/population generate_json/population.json
+perl generatepopulation.pl population population.json
 ```
 
-1.2 prepare a matrix: mat.dat, each row indicating predictions of individuals (0: absense, 1: presence) for one polymporhic HERV-K ,
-
-then converted into a json file: polymat.json as follows.
+1.2 prepare a matrix: mat.dat, each row indicating predictions of individuals (0: absense, 1: presence) for one polymporhic HERV-K, 
+then converted int polymat.json.
 ```
-perl generate_json/generatejson.pl generate_json/poly generate_json/mat.dat generate_json/population generate_json/polymat.json   
+perl generatejson.pl poly mat.dat population polymat.json   
 ```
 
 2. explanations for other json data files:
