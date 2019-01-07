@@ -2,11 +2,13 @@ This is an instruction for implementing an visualized distribution tool for poly
 
 1. User inputs: 
 
-1.1 population: population.json (e.g, get population information from the 1000 genomes dataset: population, then converted into a json file)
+1.1 get population information from the 1000 genomes dataset: population, 
+then converted into a json file: population.json as follows.
 ```
 perl generatepopulation.pl population population.json
 ```
-1.2 matrix of ploymorphic predictions: polymat.json (mat.dat: 20 rows)
+1.2 prepare a matrix: mat.dat, each row indicating predictions of individuals (0: absense, 1: presence) for one polymporhic HERV-K ,
+then converted into a json file: polymat.json as follows.
 ```
 perl generatejson.pl poly mat.dat population polymat.json   
 ```
