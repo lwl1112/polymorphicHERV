@@ -10,7 +10,7 @@ then converted into population.json (remove last , in json).
 perl generatepopulation.pl population population.json
 ```
 
-1.2 prepare a matrix: mat.dat, each row indicating predictions of individuals (0: absense, 1: presence) for one polymorphic HERV-K, 
+1.2 prepare a matrix: mat.dat, each row indicating predictions of individuals (0: absense, other numbers: presence) for one polymorphic HERV-K, 
 then converted into polymat.json (remove last , in json).
 ```
 perl generatejson.pl poly mat.dat population polymat.json   
