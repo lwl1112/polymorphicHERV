@@ -9,6 +9,7 @@ codes can be found in ```generate_json/```
 ## Get population information from the 1000 genomes dataset: population, which contains 'Sample \tab Population' from 
 
 http://www.internationalgenome.org/data-portal/sample
+
 Convert that into population.json (remove last , in json).
 ```
 perl generatepopulation.pl population population.json
