@@ -29,7 +29,7 @@ n = nrow(DF)
 p = 2   ## equivalent to d in the paper 
 
 #### get data matrix of size n x 2 : ratio & depth
-site = 55 ### which site #sitenames[site]
+site = 56 ### which site #sitenames[site]
 df <- DF[,c(site,95)]
 df[,2] <- log(df[,2]) 
 x = df
@@ -45,8 +45,8 @@ m <- rep(0, p)     #replicates the values
 J = 15L; # upper bound for the number of normal components    
 e = 20; f = 1; #alpha
   
-TT = 10000 #5000
-set.seed(123)##
+TT = 5000
+#set.seed(123)##
 #################################
 ######Initialize parameters for MCMC
 alpha <- rep(0, TT); alpha[1] <- 20
@@ -105,8 +105,8 @@ DFres <- data.frame(DF[,c(site,95)], "Z" = cluster)
 ggplot(DFres,aes_string(colnames(DFres)[1], colnames(DFres)[2])) + geom_point(aes(colour = (Z)), size = 0.5, alpha = 0.5) +
   #guides(colour=FALSE) + 
   scale_color_gradientn(colours = rev(brewer.pal(11, "Spectral"))) +
-  theme_bw() +
-  xlab(expression(n/T)) + ylab("depth")+ggtitle(sitenames[site])
+  theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  xlab(expression(n/T)) + ylab("depth")+labs(title=sitenames[site])+theme(plot.title = element_text(hjust = 0.5))
 
 
 
