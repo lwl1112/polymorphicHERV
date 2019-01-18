@@ -4,10 +4,11 @@ There are two user inputs: population.json and polymat.json
 
 # How to generate user inputs: population.json, polymat.json. 
 
-1. The code to generate the two files can be found in the folder ```generate_json/```
+The code to generate the two files can be found in the folder ```generate_json/```
 
-The 1000 genomes dataset describes where each sample was sequenced (Check out 
-http://www.internationalgenome.org/data-portal/sample). Download the file from there and convert it to a json file using the script (remove last , in json).
+1. The 1000 genomes dataset describes where each sample was sequenced (Check out 
+http://www.internationalgenome.org/data-portal/sample). 
+'population' file contains sample & population information from there and then convert it to a json file using the script (remove last , in json).
 ```
 perl generatepopulation.pl population population.json
 ```
