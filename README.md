@@ -119,7 +119,8 @@ R code examples for implementing a conversion of the n/T matrix to the 0,1,2 mat
 ```
 unique(cluster) # list all cluster numbers
 mat012= matrix(0,2535,1) # define and initialize a new matrix to store 0,1,2 values
-mat012[which(cluster==clusterno)]= 1 # set the value for points in the cluster (ie., clusterno) to 1 when the virus is presence; or 2 when solo-LTR exists.
+mat012[which(cluster==clusterno)]= 1 # set the value for points in the cluster (ie., clusterno) to 1 when the virus is presence; 
+#or 2 when solo-LTR exists.
 
 ```
 
