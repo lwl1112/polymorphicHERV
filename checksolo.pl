@@ -1,7 +1,7 @@
 
 $loc = @ARGV[2]; # chr11_101565794_101575259
 $length = length($loc);
-$out = @ARGV[3];
+$out = @ARGV[5];
 
 %ref = ();
 open(file1, @ARGV[1]); #unique.withrc
@@ -27,7 +27,7 @@ do{
   	 
   	 open(wf, ">$out/$name.fa");#write
   	 %patientkmers = ();
-  	 open(patientfile, "1kg_fasta50/$name.50.fa");
+  	 open(patientfile, "$ARGV[3]/$name.50.fa");
   	 #print "$directory$name.50.fa\n";
   	 do{
   	 	chomp($line);
@@ -45,7 +45,7 @@ do{
 	#print "$size\n";
 
 	$nn=0;
-  	 open(resfile, "hashlabels_1000g_50/$name.dat");
+  	 open(resfile, "$ARGV[4]/$name.dat");
   	 #print "$directory$f\n";
   	 do{
   	 	chomp($line);
