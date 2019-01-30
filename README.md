@@ -114,7 +114,7 @@ clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
 Note: only need to implement this step when the coverage (depth) of input sequence data is low. (i.e, <20).
 
-
+<!----
 R code examples for implementing a conversion of the n/T matrix to the 0,1,2 matrix after the biologists anaylzed the clustering diagrams.
 
 ```
@@ -124,7 +124,7 @@ mat012[which(cluster==clusterno)]= 1 # set the value for points in the cluster (
 #or 2 when solo-LTR exists.
 
 ```
-
+--->
 
 
 <!-----------------------------------------------------------------------
