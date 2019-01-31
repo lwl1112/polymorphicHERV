@@ -19,7 +19,7 @@ Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
 
 ### -- generate n/T matrix --
 
-### Step 1: Generate reference k-mers
+### Step 1: Generate reference k-mers (k=50)
 (The final output file [unique.withrc.50.fa] can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
 
 ```
@@ -50,6 +50,8 @@ the bed file can be downloaded in 'bed files/':
   HERVK_int.all.25oct2016.hg19.bed  (hg19 build)
   
   HERVK_hg38_sort_01apr2018.bed     (hg38 build)
+
+Note to GRCh37 and GRCh38 users: GRCh38 and GRCh37 have different naming scheme of chromosomes and the ALT contigs and the bed files should be changed to adapt.
 
 3.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50.
 
