@@ -35,7 +35,7 @@ where kmer50pervirus/ is a temporary directory.
 ``` 
 $ perl t.pl HERVK_alleles/ [o]tscript.50.pbs 50 
 ```
-where ```tscript.may.pbs``` is a pbs script can be run in a server.
+where ```tscript.50.pbs``` is a pbs script can be run in a server.
 
 
 ### Step 3: Experiments: mapping to the k-mer references
