@@ -1,0 +1,1810 @@
+#!/bin/sh
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=24:00:00
+#PBS -N t50.pbs
+cd /gpfs/home/wul135/scratch/codes
+~/bwa/bwa index HERVK_alleles_may/chr10_101580569_101587716.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr10_101580569_101587716.fa finalunique50_may/chr10_101580569_101587716.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr10_101580569_101587716.hk.allele.fa finalunique50_may/chr10_101580569_101587716.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr10_101580569_101587716.bam
+~/samtools/samtools sort processT.50.2017may/chr10_101580569_101587716.bam > processT.50.2017may/chr10_101580569_101587716.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr10_101580569_101587716.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr10_101580569_101587716.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr10_101580569_101587716.kmerge.nhsam
+cat processT.50.2017may/chr10_101580569_101587716.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr10_27182399_27183380.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr10_27182399_27183380.fa finalunique50_may/chr10_27182399_27183380.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr10_27182399_27183380.hk.alleleM.fa finalunique50_may/chr10_27182399_27183380.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr10_27182399_27183380.bam
+~/samtools/samtools sort processT.50.2017may/chr10_27182399_27183380.bam > processT.50.2017may/chr10_27182399_27183380.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr10_27182399_27183380.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr10_27182399_27183380.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr10_27182399_27183380.kmerge.nhsam
+cat processT.50.2017may/chr10_27182399_27183380.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr10_6867109_6874635.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr10_6867109_6874635.fa finalunique50_may/chr10_6867109_6874635.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr10_6867109_6874635.hk.allele.fa finalunique50_may/chr10_6867109_6874635.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr10_6867109_6874635.bam
+~/samtools/samtools sort processT.50.2017may/chr10_6867109_6874635.bam > processT.50.2017may/chr10_6867109_6874635.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr10_6867109_6874635.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr10_6867109_6874635.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr10_6867109_6874635.kmerge.nhsam
+cat processT.50.2017may/chr10_6867109_6874635.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr11_101565794_101575259.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr11_101565794_101575259.fa finalunique50_may/chr11_101565794_101575259.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr11_101565794_101575259.hk.allele.fa finalunique50_may/chr11_101565794_101575259.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr11_101565794_101575259.bam
+~/samtools/samtools sort processT.50.2017may/chr11_101565794_101575259.bam > processT.50.2017may/chr11_101565794_101575259.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr11_101565794_101575259.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr11_101565794_101575259.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr11_101565794_101575259.kmerge.nhsam
+cat processT.50.2017may/chr11_101565794_101575259.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr11_118591724_118600883.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr11_118591724_118600883.fa finalunique50_may/chr11_118591724_118600883.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr11_118591724_118600883.hk.allele.fa finalunique50_may/chr11_118591724_118600883.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr11_118591724_118600883.bam
+~/samtools/samtools sort processT.50.2017may/chr11_118591724_118600883.bam > processT.50.2017may/chr11_118591724_118600883.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr11_118591724_118600883.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr11_118591724_118600883.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr11_118591724_118600883.kmerge.nhsam
+cat processT.50.2017may/chr11_118591724_118600883.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr11_3468656_3478209.hk.alleleM.fas
+perl rewriteheader.pl finalunique50_may/chr11_3468656_3478209.fa finalunique50_may/chr11_3468656_3478209.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr11_3468656_3478209.hk.alleleM.fas finalunique50_may/chr11_3468656_3478209.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr11_3468656_3478209.bam
+~/samtools/samtools sort processT.50.2017may/chr11_3468656_3478209.bam > processT.50.2017may/chr11_3468656_3478209.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr11_3468656_3478209.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr11_3468656_3478209.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr11_3468656_3478209.kmerge.nhsam
+cat processT.50.2017may/chr11_3468656_3478209.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr11_58767448_58773196.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr11_58767448_58773196.fa finalunique50_may/chr11_58767448_58773196.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr11_58767448_58773196.hk.allele.fa finalunique50_may/chr11_58767448_58773196.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr11_58767448_58773196.bam
+~/samtools/samtools sort processT.50.2017may/chr11_58767448_58773196.bam > processT.50.2017may/chr11_58767448_58773196.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr11_58767448_58773196.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr11_58767448_58773196.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr11_58767448_58773196.kmerge.nhsam
+cat processT.50.2017may/chr11_58767448_58773196.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr11_62135963_62150563.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr11_62135963_62150563.fa finalunique50_may/chr11_62135963_62150563.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr11_62135963_62150563.hk.allele.fa finalunique50_may/chr11_62135963_62150563.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr11_62135963_62150563.bam
+~/samtools/samtools sort processT.50.2017may/chr11_62135963_62150563.bam > processT.50.2017may/chr11_62135963_62150563.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr11_62135963_62150563.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr11_62135963_62150563.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr11_62135963_62150563.kmerge.nhsam
+cat processT.50.2017may/chr11_62135963_62150563.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr12_111007843_111009325.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr12_111007843_111009325.fa finalunique50_may/chr12_111007843_111009325.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr12_111007843_111009325.hk.allele.fa finalunique50_may/chr12_111007843_111009325.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr12_111007843_111009325.bam
+~/samtools/samtools sort processT.50.2017may/chr12_111007843_111009325.bam > processT.50.2017may/chr12_111007843_111009325.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr12_111007843_111009325.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr12_111007843_111009325.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr12_111007843_111009325.kmerge.nhsam
+cat processT.50.2017may/chr12_111007843_111009325.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr12_133667120_133673132.hk.alleleT.fa
+perl rewriteheader.pl finalunique50_may/chr12_133667120_133673132.fa finalunique50_may/chr12_133667120_133673132.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr12_133667120_133673132.hk.alleleT.fa finalunique50_may/chr12_133667120_133673132.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr12_133667120_133673132.bam
+~/samtools/samtools sort processT.50.2017may/chr12_133667120_133673132.bam > processT.50.2017may/chr12_133667120_133673132.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr12_133667120_133673132.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr12_133667120_133673132.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr12_133667120_133673132.kmerge.nhsam
+cat processT.50.2017may/chr12_133667120_133673132.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr12_34772555_34782217.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr12_34772555_34782217.fa finalunique50_may/chr12_34772555_34782217.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr12_34772555_34782217.hk.allele.fa finalunique50_may/chr12_34772555_34782217.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr12_34772555_34782217.bam
+~/samtools/samtools sort processT.50.2017may/chr12_34772555_34782217.bam > processT.50.2017may/chr12_34772555_34782217.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr12_34772555_34782217.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr12_34772555_34782217.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr12_34772555_34782217.kmerge.nhsam
+cat processT.50.2017may/chr12_34772555_34782217.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr12_55727215_55728183.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr12_55727215_55728183.fa finalunique50_may/chr12_55727215_55728183.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr12_55727215_55728183.hk.allele.fa finalunique50_may/chr12_55727215_55728183.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr12_55727215_55728183.bam
+~/samtools/samtools sort processT.50.2017may/chr12_55727215_55728183.bam > processT.50.2017may/chr12_55727215_55728183.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr12_55727215_55728183.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr12_55727215_55728183.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr12_55727215_55728183.kmerge.nhsam
+cat processT.50.2017may/chr12_55727215_55728183.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr12_58721242_58730698.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr12_58721242_58730698.fa finalunique50_may/chr12_58721242_58730698.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr12_58721242_58730698.hk.allele.fa finalunique50_may/chr12_58721242_58730698.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr12_58721242_58730698.bam
+~/samtools/samtools sort processT.50.2017may/chr12_58721242_58730698.bam > processT.50.2017may/chr12_58721242_58730698.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr12_58721242_58730698.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr12_58721242_58730698.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr12_58721242_58730698.kmerge.nhsam
+cat processT.50.2017may/chr12_58721242_58730698.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr14_106139659_106142540.hk.alleleM1.fa.fas
+perl rewriteheader.pl finalunique50_may/chr14_106139659_106142540.fa finalunique50_may/chr14_106139659_106142540.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr14_106139659_106142540.hk.alleleM1.fa.fas finalunique50_may/chr14_106139659_106142540.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr14_106139659_106142540.bam
+~/samtools/samtools sort processT.50.2017may/chr14_106139659_106142540.bam > processT.50.2017may/chr14_106139659_106142540.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr14_106139659_106142540.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr14_106139659_106142540.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr14_106139659_106142540.kmerge.nhsam
+cat processT.50.2017may/chr14_106139659_106142540.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr14_24480625_24484121.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr14_24480625_24484121.fa finalunique50_may/chr14_24480625_24484121.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr14_24480625_24484121.hk.allele.fa finalunique50_may/chr14_24480625_24484121.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr14_24480625_24484121.bam
+~/samtools/samtools sort processT.50.2017may/chr14_24480625_24484121.bam > processT.50.2017may/chr14_24480625_24484121.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr14_24480625_24484121.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr14_24480625_24484121.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr14_24480625_24484121.kmerge.nhsam
+cat processT.50.2017may/chr14_24480625_24484121.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr15_84829020_84832364.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr15_84829020_84832364.fa finalunique50_may/chr15_84829020_84832364.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr15_84829020_84832364.hk.allele.fa finalunique50_may/chr15_84829020_84832364.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr15_84829020_84832364.bam
+~/samtools/samtools sort processT.50.2017may/chr15_84829020_84832364.bam > processT.50.2017may/chr15_84829020_84832364.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr15_84829020_84832364.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr15_84829020_84832364.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr15_84829020_84832364.kmerge.nhsam
+cat processT.50.2017may/chr15_84829020_84832364.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr16_2976160_2977661.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr16_2976160_2977661.fa finalunique50_may/chr16_2976160_2977661.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr16_2976160_2977661.hk.allele.fa finalunique50_may/chr16_2976160_2977661.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr16_2976160_2977661.bam
+~/samtools/samtools sort processT.50.2017may/chr16_2976160_2977661.bam > processT.50.2017may/chr16_2976160_2977661.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr16_2976160_2977661.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr16_2976160_2977661.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr16_2976160_2977661.kmerge.nhsam
+cat processT.50.2017may/chr16_2976160_2977661.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr16_34231474_34234142.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr16_34231474_34234142.fa finalunique50_may/chr16_34231474_34234142.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr16_34231474_34234142.hk.allele.fa finalunique50_may/chr16_34231474_34234142.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr16_34231474_34234142.bam
+~/samtools/samtools sort processT.50.2017may/chr16_34231474_34234142.bam > processT.50.2017may/chr16_34231474_34234142.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr16_34231474_34234142.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr16_34231474_34234142.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr16_34231474_34234142.kmerge.nhsam
+cat processT.50.2017may/chr16_34231474_34234142.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr17_7960357_7967219.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr17_7960357_7967219.fa finalunique50_may/chr17_7960357_7967219.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr17_7960357_7967219.hk.allele.fa finalunique50_may/chr17_7960357_7967219.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr17_7960357_7967219.bam
+~/samtools/samtools sort processT.50.2017may/chr17_7960357_7967219.bam > processT.50.2017may/chr17_7960357_7967219.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr17_7960357_7967219.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr17_7960357_7967219.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr17_7960357_7967219.kmerge.nhsam
+cat processT.50.2017may/chr17_7960357_7967219.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_20387400_20397512.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_20387400_20397512.fa finalunique50_may/chr19_20387400_20397512.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_20387400_20397512.hk.allele.fa finalunique50_may/chr19_20387400_20397512.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_20387400_20397512.bam
+~/samtools/samtools sort processT.50.2017may/chr19_20387400_20397512.bam > processT.50.2017may/chr19_20387400_20397512.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_20387400_20397512.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_20387400_20397512.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_20387400_20397512.kmerge.nhsam
+cat processT.50.2017may/chr19_20387400_20397512.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_21841536_21841542.hk.alleleT.fa
+perl rewriteheader.pl finalunique50_may/chr19_21841536_21841542.fa finalunique50_may/chr19_21841536_21841542.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_21841536_21841542.hk.alleleT.fa finalunique50_may/chr19_21841536_21841542.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_21841536_21841542.bam
+~/samtools/samtools sort processT.50.2017may/chr19_21841536_21841542.bam > processT.50.2017may/chr19_21841536_21841542.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_21841536_21841542.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_21841536_21841542.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_21841536_21841542.kmerge.nhsam
+cat processT.50.2017may/chr19_21841536_21841542.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_22414379_22414380.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_22414379_22414380.fa finalunique50_may/chr19_22414379_22414380.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_22414379_22414380.hk.allele.fa finalunique50_may/chr19_22414379_22414380.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_22414379_22414380.bam
+~/samtools/samtools sort processT.50.2017may/chr19_22414379_22414380.bam > processT.50.2017may/chr19_22414379_22414380.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_22414379_22414380.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_22414379_22414380.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_22414379_22414380.kmerge.nhsam
+cat processT.50.2017may/chr19_22414379_22414380.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_22457244_22457245.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_22457244_22457245.fa finalunique50_may/chr19_22457244_22457245.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_22457244_22457245.hk.allele.fa finalunique50_may/chr19_22457244_22457245.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_22457244_22457245.bam
+~/samtools/samtools sort processT.50.2017may/chr19_22457244_22457245.bam > processT.50.2017may/chr19_22457244_22457245.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_22457244_22457245.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_22457244_22457245.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_22457244_22457245.kmerge.nhsam
+cat processT.50.2017may/chr19_22457244_22457245.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_22757824_22764561.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_22757824_22764561.fa finalunique50_may/chr19_22757824_22764561.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_22757824_22764561.hk.allele.fa finalunique50_may/chr19_22757824_22764561.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_22757824_22764561.bam
+~/samtools/samtools sort processT.50.2017may/chr19_22757824_22764561.bam > processT.50.2017may/chr19_22757824_22764561.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_22757824_22764561.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_22757824_22764561.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_22757824_22764561.kmerge.nhsam
+cat processT.50.2017may/chr19_22757824_22764561.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_28128498_28137361.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_28128498_28137361.fa finalunique50_may/chr19_28128498_28137361.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_28128498_28137361.hk.allele.fa finalunique50_may/chr19_28128498_28137361.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_28128498_28137361.bam
+~/samtools/samtools sort processT.50.2017may/chr19_28128498_28137361.bam > processT.50.2017may/chr19_28128498_28137361.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_28128498_28137361.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_28128498_28137361.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_28128498_28137361.kmerge.nhsam
+cat processT.50.2017may/chr19_28128498_28137361.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_36063207_36067434.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_36063207_36067434.fa finalunique50_may/chr19_36063207_36067434.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_36063207_36067434.hk.allele.fa finalunique50_may/chr19_36063207_36067434.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_36063207_36067434.bam
+~/samtools/samtools sort processT.50.2017may/chr19_36063207_36067434.bam > processT.50.2017may/chr19_36063207_36067434.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_36063207_36067434.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_36063207_36067434.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_36063207_36067434.kmerge.nhsam
+cat processT.50.2017may/chr19_36063207_36067434.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_37597549_37607066.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_37597549_37607066.fa finalunique50_may/chr19_37597549_37607066.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_37597549_37607066.hk.allele.fa finalunique50_may/chr19_37597549_37607066.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_37597549_37607066.bam
+~/samtools/samtools sort processT.50.2017may/chr19_37597549_37607066.bam > processT.50.2017may/chr19_37597549_37607066.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_37597549_37607066.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_37597549_37607066.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_37597549_37607066.kmerge.nhsam
+cat processT.50.2017may/chr19_37597549_37607066.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_385095_387637.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_385095_387637.fa finalunique50_may/chr19_385095_387637.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_385095_387637.hk.allele.fa finalunique50_may/chr19_385095_387637.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_385095_387637.bam
+~/samtools/samtools sort processT.50.2017may/chr19_385095_387637.bam > processT.50.2017may/chr19_385095_387637.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_385095_387637.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_385095_387637.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_385095_387637.kmerge.nhsam
+cat processT.50.2017may/chr19_385095_387637.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_53248274_53252591.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_53248274_53252591.fa finalunique50_may/chr19_53248274_53252591.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_53248274_53252591.hk.allele.fa finalunique50_may/chr19_53248274_53252591.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_53248274_53252591.bam
+~/samtools/samtools sort processT.50.2017may/chr19_53248274_53252591.bam > processT.50.2017may/chr19_53248274_53252591.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_53248274_53252591.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_53248274_53252591.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_53248274_53252591.kmerge.nhsam
+cat processT.50.2017may/chr19_53248274_53252591.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr19_53862348_53868044.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr19_53862348_53868044.fa finalunique50_may/chr19_53862348_53868044.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr19_53862348_53868044.hk.allele.fa finalunique50_may/chr19_53862348_53868044.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr19_53862348_53868044.bam
+~/samtools/samtools sort processT.50.2017may/chr19_53862348_53868044.bam > processT.50.2017may/chr19_53862348_53868044.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr19_53862348_53868044.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr19_53862348_53868044.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr19_53862348_53868044.kmerge.nhsam
+cat processT.50.2017may/chr19_53862348_53868044.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_12840260_12846364.hk.alleleT.fa
+perl rewriteheader.pl finalunique50_may/chr1_12840260_12846364.fa finalunique50_may/chr1_12840260_12846364.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_12840260_12846364.hk.alleleT.fa finalunique50_may/chr1_12840260_12846364.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_12840260_12846364.bam
+~/samtools/samtools sort processT.50.2017may/chr1_12840260_12846364.bam > processT.50.2017may/chr1_12840260_12846364.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_12840260_12846364.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_12840260_12846364.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_12840260_12846364.kmerge.nhsam
+cat processT.50.2017may/chr1_12840260_12846364.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_13678850_13688242.hk.alleleT.fa
+perl rewriteheader.pl finalunique50_may/chr1_13678850_13688242.fa finalunique50_may/chr1_13678850_13688242.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_13678850_13688242.hk.alleleT.fa finalunique50_may/chr1_13678850_13688242.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_13678850_13688242.bam
+~/samtools/samtools sort processT.50.2017may/chr1_13678850_13688242.bam > processT.50.2017may/chr1_13678850_13688242.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_13678850_13688242.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_13678850_13688242.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_13678850_13688242.kmerge.nhsam
+cat processT.50.2017may/chr1_13678850_13688242.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_150605284_150608361.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_150605284_150608361.fa finalunique50_may/chr1_150605284_150608361.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_150605284_150608361.hk.allele.fa finalunique50_may/chr1_150605284_150608361.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_150605284_150608361.bam
+~/samtools/samtools sort processT.50.2017may/chr1_150605284_150608361.bam > processT.50.2017may/chr1_150605284_150608361.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_150605284_150608361.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_150605284_150608361.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_150605284_150608361.kmerge.nhsam
+cat processT.50.2017may/chr1_150605284_150608361.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_155596457_155605636.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_155596457_155605636.fa finalunique50_may/chr1_155596457_155605636.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_155596457_155605636.hk.allele.fa finalunique50_may/chr1_155596457_155605636.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_155596457_155605636.bam
+~/samtools/samtools sort processT.50.2017may/chr1_155596457_155605636.bam > processT.50.2017may/chr1_155596457_155605636.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_155596457_155605636.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_155596457_155605636.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_155596457_155605636.kmerge.nhsam
+cat processT.50.2017may/chr1_155596457_155605636.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_160660575_160669806.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_160660575_160669806.fa finalunique50_may/chr1_160660575_160669806.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_160660575_160669806.hk.allele.fa finalunique50_may/chr1_160660575_160669806.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_160660575_160669806.bam
+~/samtools/samtools sort processT.50.2017may/chr1_160660575_160669806.bam > processT.50.2017may/chr1_160660575_160669806.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_160660575_160669806.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_160660575_160669806.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_160660575_160669806.kmerge.nhsam
+cat processT.50.2017may/chr1_160660575_160669806.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_166574603_166580258.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_166574603_166580258.fa finalunique50_may/chr1_166574603_166580258.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_166574603_166580258.hk.allele.fa finalunique50_may/chr1_166574603_166580258.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_166574603_166580258.bam
+~/samtools/samtools sort processT.50.2017may/chr1_166574603_166580258.bam > processT.50.2017may/chr1_166574603_166580258.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_166574603_166580258.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_166574603_166580258.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_166574603_166580258.kmerge.nhsam
+cat processT.50.2017may/chr1_166574603_166580258.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_207808457_207812636.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr1_207808457_207812636.fa finalunique50_may/chr1_207808457_207812636.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_207808457_207812636.hk.alleleM.fa finalunique50_may/chr1_207808457_207812636.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_207808457_207812636.bam
+~/samtools/samtools sort processT.50.2017may/chr1_207808457_207812636.bam > processT.50.2017may/chr1_207808457_207812636.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_207808457_207812636.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_207808457_207812636.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_207808457_207812636.kmerge.nhsam
+cat processT.50.2017may/chr1_207808457_207812636.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_238925595_238927773.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_238925595_238927773.fa finalunique50_may/chr1_238925595_238927773.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_238925595_238927773.hk.allele.fa finalunique50_may/chr1_238925595_238927773.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_238925595_238927773.bam
+~/samtools/samtools sort processT.50.2017may/chr1_238925595_238927773.bam > processT.50.2017may/chr1_238925595_238927773.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_238925595_238927773.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_238925595_238927773.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_238925595_238927773.kmerge.nhsam
+cat processT.50.2017may/chr1_238925595_238927773.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_36955490_36956728.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_36955490_36956728.fa finalunique50_may/chr1_36955490_36956728.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_36955490_36956728.hk.allele.fa finalunique50_may/chr1_36955490_36956728.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_36955490_36956728.bam
+~/samtools/samtools sort processT.50.2017may/chr1_36955490_36956728.bam > processT.50.2017may/chr1_36955490_36956728.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_36955490_36956728.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_36955490_36956728.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_36955490_36956728.kmerge.nhsam
+cat processT.50.2017may/chr1_36955490_36956728.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_73594980_73595948.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_73594980_73595948.fa finalunique50_may/chr1_73594980_73595948.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_73594980_73595948.hk.allele.fa finalunique50_may/chr1_73594980_73595948.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_73594980_73595948.bam
+~/samtools/samtools sort processT.50.2017may/chr1_73594980_73595948.bam > processT.50.2017may/chr1_73594980_73595948.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_73594980_73595948.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_73594980_73595948.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_73594980_73595948.kmerge.nhsam
+cat processT.50.2017may/chr1_73594980_73595948.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr1_75842771_75849143.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr1_75842771_75849143.fa finalunique50_may/chr1_75842771_75849143.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr1_75842771_75849143.hk.allele.fa finalunique50_may/chr1_75842771_75849143.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr1_75842771_75849143.bam
+~/samtools/samtools sort processT.50.2017may/chr1_75842771_75849143.bam > processT.50.2017may/chr1_75842771_75849143.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr1_75842771_75849143.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr1_75842771_75849143.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr1_75842771_75849143.kmerge.nhsam
+cat processT.50.2017may/chr1_75842771_75849143.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr20_32714750_32724384.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr20_32714750_32724384.fa finalunique50_may/chr20_32714750_32724384.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr20_32714750_32724384.hk.allele.fa finalunique50_may/chr20_32714750_32724384.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr20_32714750_32724384.bam
+~/samtools/samtools sort processT.50.2017may/chr20_32714750_32724384.bam > processT.50.2017may/chr20_32714750_32724384.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr20_32714750_32724384.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr20_32714750_32724384.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr20_32714750_32724384.kmerge.nhsam
+cat processT.50.2017may/chr20_32714750_32724384.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr21_19933916_19941962.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr21_19933916_19941962.fa finalunique50_may/chr21_19933916_19941962.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr21_19933916_19941962.hk.allele.fa finalunique50_may/chr21_19933916_19941962.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr21_19933916_19941962.bam
+~/samtools/samtools sort processT.50.2017may/chr21_19933916_19941962.bam > processT.50.2017may/chr21_19933916_19941962.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr21_19933916_19941962.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr21_19933916_19941962.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr21_19933916_19941962.kmerge.nhsam
+cat processT.50.2017may/chr21_19933916_19941962.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr22_18926187_18935307.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr22_18926187_18935307.fa finalunique50_may/chr22_18926187_18935307.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr22_18926187_18935307.hk.allele.fa finalunique50_may/chr22_18926187_18935307.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr22_18926187_18935307.bam
+~/samtools/samtools sort processT.50.2017may/chr22_18926187_18935307.bam > processT.50.2017may/chr22_18926187_18935307.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr22_18926187_18935307.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr22_18926187_18935307.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr22_18926187_18935307.kmerge.nhsam
+cat processT.50.2017may/chr22_18926187_18935307.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr22_23879930_23888810.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr22_23879930_23888810.fa finalunique50_may/chr22_23879930_23888810.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr22_23879930_23888810.hk.allele.fa finalunique50_may/chr22_23879930_23888810.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr22_23879930_23888810.bam
+~/samtools/samtools sort processT.50.2017may/chr22_23879930_23888810.bam > processT.50.2017may/chr22_23879930_23888810.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr22_23879930_23888810.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr22_23879930_23888810.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr22_23879930_23888810.kmerge.nhsam
+cat processT.50.2017may/chr22_23879930_23888810.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr2_130719538_130722209.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr2_130719538_130722209.fa finalunique50_may/chr2_130719538_130722209.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr2_130719538_130722209.hk.allele.fa finalunique50_may/chr2_130719538_130722209.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr2_130719538_130722209.bam
+~/samtools/samtools sort processT.50.2017may/chr2_130719538_130722209.bam > processT.50.2017may/chr2_130719538_130722209.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr2_130719538_130722209.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr2_130719538_130722209.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr2_130719538_130722209.kmerge.nhsam
+cat processT.50.2017may/chr2_130719538_130722209.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_101410737_101419859.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_101410737_101419859.fa finalunique50_may/chr3_101410737_101419859.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_101410737_101419859.hk.allele.fa finalunique50_may/chr3_101410737_101419859.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_101410737_101419859.bam
+~/samtools/samtools sort processT.50.2017may/chr3_101410737_101419859.bam > processT.50.2017may/chr3_101410737_101419859.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_101410737_101419859.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_101410737_101419859.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_101410737_101419859.kmerge.nhsam
+cat processT.50.2017may/chr3_101410737_101419859.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_112743479_112752282.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_112743479_112752282.fa finalunique50_may/chr3_112743479_112752282.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_112743479_112752282.hk.allele.fa finalunique50_may/chr3_112743479_112752282.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_112743479_112752282.bam
+~/samtools/samtools sort processT.50.2017may/chr3_112743479_112752282.bam > processT.50.2017may/chr3_112743479_112752282.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_112743479_112752282.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_112743479_112752282.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_112743479_112752282.kmerge.nhsam
+cat processT.50.2017may/chr3_112743479_112752282.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_125609302_125618416.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_125609302_125618416.fa finalunique50_may/chr3_125609302_125618416.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_125609302_125618416.hk.allele.fa finalunique50_may/chr3_125609302_125618416.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_125609302_125618416.bam
+~/samtools/samtools sort processT.50.2017may/chr3_125609302_125618416.bam > processT.50.2017may/chr3_125609302_125618416.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_125609302_125618416.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_125609302_125618416.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_125609302_125618416.kmerge.nhsam
+cat processT.50.2017may/chr3_125609302_125618416.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_148281477_148285396.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_148281477_148285396.fa finalunique50_may/chr3_148281477_148285396.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_148281477_148285396.hk.allele.fa finalunique50_may/chr3_148281477_148285396.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_148281477_148285396.bam
+~/samtools/samtools sort processT.50.2017may/chr3_148281477_148285396.bam > processT.50.2017may/chr3_148281477_148285396.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_148281477_148285396.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_148281477_148285396.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_148281477_148285396.kmerge.nhsam
+cat processT.50.2017may/chr3_148281477_148285396.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_185280336_185289515.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_185280336_185289515.fa finalunique50_may/chr3_185280336_185289515.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_185280336_185289515.hk.allele.fa finalunique50_may/chr3_185280336_185289515.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_185280336_185289515.bam
+~/samtools/samtools sort processT.50.2017may/chr3_185280336_185289515.bam > processT.50.2017may/chr3_185280336_185289515.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_185280336_185289515.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_185280336_185289515.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_185280336_185289515.kmerge.nhsam
+cat processT.50.2017may/chr3_185280336_185289515.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_75600465_75609150.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_75600465_75609150.fa finalunique50_may/chr3_75600465_75609150.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_75600465_75609150.hk.allele.fa finalunique50_may/chr3_75600465_75609150.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_75600465_75609150.bam
+~/samtools/samtools sort processT.50.2017may/chr3_75600465_75609150.bam > processT.50.2017may/chr3_75600465_75609150.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_75600465_75609150.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_75600465_75609150.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_75600465_75609150.kmerge.nhsam
+cat processT.50.2017may/chr3_75600465_75609150.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr3_9889346_9896236.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr3_9889346_9896236.fa finalunique50_may/chr3_9889346_9896236.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr3_9889346_9896236.hk.allele.fa finalunique50_may/chr3_9889346_9896236.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr3_9889346_9896236.bam
+~/samtools/samtools sort processT.50.2017may/chr3_9889346_9896236.bam > processT.50.2017may/chr3_9889346_9896236.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr3_9889346_9896236.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr3_9889346_9896236.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr3_9889346_9896236.kmerge.nhsam
+cat processT.50.2017may/chr3_9889346_9896236.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_161579938_161582360.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr4_161579938_161582360.fa finalunique50_may/chr4_161579938_161582360.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_161579938_161582360.hk.allele.fa finalunique50_may/chr4_161579938_161582360.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_161579938_161582360.bam
+~/samtools/samtools sort processT.50.2017may/chr4_161579938_161582360.bam > processT.50.2017may/chr4_161579938_161582360.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_161579938_161582360.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_161579938_161582360.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_161579938_161582360.kmerge.nhsam
+cat processT.50.2017may/chr4_161579938_161582360.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_165916840_165924068.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr4_165916840_165924068.fa finalunique50_may/chr4_165916840_165924068.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_165916840_165924068.hk.allele.fa finalunique50_may/chr4_165916840_165924068.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_165916840_165924068.bam
+~/samtools/samtools sort processT.50.2017may/chr4_165916840_165924068.bam > processT.50.2017may/chr4_165916840_165924068.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_165916840_165924068.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_165916840_165924068.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_165916840_165924068.kmerge.nhsam
+cat processT.50.2017may/chr4_165916840_165924068.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_191027414_191034701.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr4_191027414_191034701.fa finalunique50_may/chr4_191027414_191034701.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_191027414_191034701.hk.allele.fa finalunique50_may/chr4_191027414_191034701.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_191027414_191034701.bam
+~/samtools/samtools sort processT.50.2017may/chr4_191027414_191034701.bam > processT.50.2017may/chr4_191027414_191034701.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_191027414_191034701.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_191027414_191034701.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_191027414_191034701.kmerge.nhsam
+cat processT.50.2017may/chr4_191027414_191034701.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_234989_239459.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr4_234989_239459.fa finalunique50_may/chr4_234989_239459.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_234989_239459.hk.alleleM.fa finalunique50_may/chr4_234989_239459.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_234989_239459.bam
+~/samtools/samtools sort processT.50.2017may/chr4_234989_239459.bam > processT.50.2017may/chr4_234989_239459.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_234989_239459.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_234989_239459.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_234989_239459.kmerge.nhsam
+cat processT.50.2017may/chr4_234989_239459.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_3980069_3988631.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr4_3980069_3988631.fa finalunique50_may/chr4_3980069_3988631.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_3980069_3988631.hk.alleleM.fa finalunique50_may/chr4_3980069_3988631.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_3980069_3988631.bam
+~/samtools/samtools sort processT.50.2017may/chr4_3980069_3988631.bam > processT.50.2017may/chr4_3980069_3988631.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_3980069_3988631.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_3980069_3988631.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_3980069_3988631.kmerge.nhsam
+cat processT.50.2017may/chr4_3980069_3988631.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_69463709_69469223.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr4_69463709_69469223.fa finalunique50_may/chr4_69463709_69469223.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_69463709_69469223.hk.allele.fa finalunique50_may/chr4_69463709_69469223.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_69463709_69469223.bam
+~/samtools/samtools sort processT.50.2017may/chr4_69463709_69469223.bam > processT.50.2017may/chr4_69463709_69469223.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_69463709_69469223.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_69463709_69469223.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_69463709_69469223.kmerge.nhsam
+cat processT.50.2017may/chr4_69463709_69469223.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_9123515_9133075.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr4_9123515_9133075.fa finalunique50_may/chr4_9123515_9133075.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_9123515_9133075.hk.alleleM.fa finalunique50_may/chr4_9123515_9133075.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_9123515_9133075.bam
+~/samtools/samtools sort processT.50.2017may/chr4_9123515_9133075.bam > processT.50.2017may/chr4_9123515_9133075.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_9123515_9133075.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_9123515_9133075.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_9123515_9133075.kmerge.nhsam
+cat processT.50.2017may/chr4_9123515_9133075.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr4_9659588_9668650.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr4_9659588_9668650.fa finalunique50_may/chr4_9659588_9668650.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr4_9659588_9668650.hk.alleleM.fa finalunique50_may/chr4_9659588_9668650.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr4_9659588_9668650.bam
+~/samtools/samtools sort processT.50.2017may/chr4_9659588_9668650.bam > processT.50.2017may/chr4_9659588_9668650.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr4_9659588_9668650.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr4_9659588_9668650.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr4_9659588_9668650.kmerge.nhsam
+cat processT.50.2017may/chr4_9659588_9668650.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr5_154016502_154024214.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr5_154016502_154024214.fa finalunique50_may/chr5_154016502_154024214.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr5_154016502_154024214.hk.allele.fa finalunique50_may/chr5_154016502_154024214.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr5_154016502_154024214.bam
+~/samtools/samtools sort processT.50.2017may/chr5_154016502_154024214.bam > processT.50.2017may/chr5_154016502_154024214.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr5_154016502_154024214.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr5_154016502_154024214.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr5_154016502_154024214.kmerge.nhsam
+cat processT.50.2017may/chr5_154016502_154024214.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr5_156084717_156093896.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr5_156084717_156093896.fa finalunique50_may/chr5_156084717_156093896.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr5_156084717_156093896.hk.allele.fa finalunique50_may/chr5_156084717_156093896.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr5_156084717_156093896.bam
+~/samtools/samtools sort processT.50.2017may/chr5_156084717_156093896.bam > processT.50.2017may/chr5_156084717_156093896.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr5_156084717_156093896.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr5_156084717_156093896.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr5_156084717_156093896.kmerge.nhsam
+cat processT.50.2017may/chr5_156084717_156093896.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr5_30487114_30496205.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr5_30487114_30496205.fa finalunique50_may/chr5_30487114_30496205.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr5_30487114_30496205.hk.allele.fa finalunique50_may/chr5_30487114_30496205.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr5_30487114_30496205.bam
+~/samtools/samtools sort processT.50.2017may/chr5_30487114_30496205.bam > processT.50.2017may/chr5_30487114_30496205.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr5_30487114_30496205.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr5_30487114_30496205.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr5_30487114_30496205.kmerge.nhsam
+cat processT.50.2017may/chr5_30487114_30496205.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr5_46000159_46010002.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr5_46000159_46010002.fa finalunique50_may/chr5_46000159_46010002.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr5_46000159_46010002.hk.allele.fa finalunique50_may/chr5_46000159_46010002.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr5_46000159_46010002.bam
+~/samtools/samtools sort processT.50.2017may/chr5_46000159_46010002.bam > processT.50.2017may/chr5_46000159_46010002.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr5_46000159_46010002.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr5_46000159_46010002.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr5_46000159_46010002.kmerge.nhsam
+cat processT.50.2017may/chr5_46000159_46010002.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr6_151180749_151183574.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr6_151180749_151183574.fa finalunique50_may/chr6_151180749_151183574.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr6_151180749_151183574.hk.allele.fa finalunique50_may/chr6_151180749_151183574.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr6_151180749_151183574.bam
+~/samtools/samtools sort processT.50.2017may/chr6_151180749_151183574.bam > processT.50.2017may/chr6_151180749_151183574.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr6_151180749_151183574.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr6_151180749_151183574.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr6_151180749_151183574.kmerge.nhsam
+cat processT.50.2017may/chr6_151180749_151183574.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr6_28650367_28660735.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr6_28650367_28660735.fa finalunique50_may/chr6_28650367_28660735.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr6_28650367_28660735.hk.allele.fa finalunique50_may/chr6_28650367_28660735.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr6_28650367_28660735.bam
+~/samtools/samtools sort processT.50.2017may/chr6_28650367_28660735.bam > processT.50.2017may/chr6_28650367_28660735.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr6_28650367_28660735.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr6_28650367_28660735.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr6_28650367_28660735.kmerge.nhsam
+cat processT.50.2017may/chr6_28650367_28660735.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr6_42861409_42871367.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr6_42861409_42871367.fa finalunique50_may/chr6_42861409_42871367.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr6_42861409_42871367.hk.allele.fa finalunique50_may/chr6_42861409_42871367.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr6_42861409_42871367.bam
+~/samtools/samtools sort processT.50.2017may/chr6_42861409_42871367.bam > processT.50.2017may/chr6_42861409_42871367.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr6_42861409_42871367.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr6_42861409_42871367.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr6_42861409_42871367.kmerge.nhsam
+cat processT.50.2017may/chr6_42861409_42871367.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr6_57623896_57628704.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr6_57623896_57628704.fa finalunique50_may/chr6_57623896_57628704.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr6_57623896_57628704.hk.allele.fa finalunique50_may/chr6_57623896_57628704.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr6_57623896_57628704.bam
+~/samtools/samtools sort processT.50.2017may/chr6_57623896_57628704.bam > processT.50.2017may/chr6_57623896_57628704.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr6_57623896_57628704.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr6_57623896_57628704.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr6_57623896_57628704.kmerge.nhsam
+cat processT.50.2017may/chr6_57623896_57628704.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr6_78427019_78436083.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr6_78427019_78436083.fa finalunique50_may/chr6_78427019_78436083.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr6_78427019_78436083.hk.allele.fa finalunique50_may/chr6_78427019_78436083.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr6_78427019_78436083.bam
+~/samtools/samtools sort processT.50.2017may/chr6_78427019_78436083.bam > processT.50.2017may/chr6_78427019_78436083.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr6_78427019_78436083.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr6_78427019_78436083.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr6_78427019_78436083.kmerge.nhsam
+cat processT.50.2017may/chr6_78427019_78436083.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr7_104388369_104393266.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr7_104388369_104393266.fa finalunique50_may/chr7_104388369_104393266.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr7_104388369_104393266.hk.allele.fa finalunique50_may/chr7_104388369_104393266.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr7_104388369_104393266.bam
+~/samtools/samtools sort processT.50.2017may/chr7_104388369_104393266.bam > processT.50.2017may/chr7_104388369_104393266.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr7_104388369_104393266.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr7_104388369_104393266.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr7_104388369_104393266.kmerge.nhsam
+cat processT.50.2017may/chr7_104388369_104393266.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr7_141450926_141455903.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr7_141450926_141455903.fa finalunique50_may/chr7_141450926_141455903.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr7_141450926_141455903.hk.allele.fa finalunique50_may/chr7_141450926_141455903.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr7_141450926_141455903.bam
+~/samtools/samtools sort processT.50.2017may/chr7_141450926_141455903.bam > processT.50.2017may/chr7_141450926_141455903.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr7_141450926_141455903.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr7_141450926_141455903.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr7_141450926_141455903.kmerge.nhsam
+cat processT.50.2017may/chr7_141450926_141455903.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr7_4622057_4631528.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr7_4622057_4631528.fa finalunique50_may/chr7_4622057_4631528.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr7_4622057_4631528.hk.alleleM.fa finalunique50_may/chr7_4622057_4631528.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr7_4622057_4631528.bam
+~/samtools/samtools sort processT.50.2017may/chr7_4622057_4631528.bam > processT.50.2017may/chr7_4622057_4631528.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr7_4622057_4631528.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr7_4622057_4631528.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr7_4622057_4631528.kmerge.nhsam
+cat processT.50.2017may/chr7_4622057_4631528.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr7_4630561_4640031.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr7_4630561_4640031.fa finalunique50_may/chr7_4630561_4640031.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr7_4630561_4640031.hk.allele.fa finalunique50_may/chr7_4630561_4640031.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr7_4630561_4640031.bam
+~/samtools/samtools sort processT.50.2017may/chr7_4630561_4640031.bam > processT.50.2017may/chr7_4630561_4640031.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr7_4630561_4640031.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr7_4630561_4640031.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr7_4630561_4640031.kmerge.nhsam
+cat processT.50.2017may/chr7_4630561_4640031.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr7_65469689_65472384.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr7_65469689_65472384.fa finalunique50_may/chr7_65469689_65472384.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr7_65469689_65472384.hk.allele.fa finalunique50_may/chr7_65469689_65472384.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr7_65469689_65472384.bam
+~/samtools/samtools sort processT.50.2017may/chr7_65469689_65472384.bam > processT.50.2017may/chr7_65469689_65472384.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr7_65469689_65472384.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr7_65469689_65472384.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr7_65469689_65472384.kmerge.nhsam
+cat processT.50.2017may/chr7_65469689_65472384.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_12073970_12083497.hk.alleleTM.fa
+perl rewriteheader.pl finalunique50_may/chr8_12073970_12083497.fa finalunique50_may/chr8_12073970_12083497.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_12073970_12083497.hk.alleleTM.fa finalunique50_may/chr8_12073970_12083497.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_12073970_12083497.bam
+~/samtools/samtools sort processT.50.2017may/chr8_12073970_12083497.bam > processT.50.2017may/chr8_12073970_12083497.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_12073970_12083497.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_12073970_12083497.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_12073970_12083497.kmerge.nhsam
+cat processT.50.2017may/chr8_12073970_12083497.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_12316492_12326007.hk.alleleTM.fa
+perl rewriteheader.pl finalunique50_may/chr8_12316492_12326007.fa finalunique50_may/chr8_12316492_12326007.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_12316492_12326007.hk.alleleTM.fa finalunique50_may/chr8_12316492_12326007.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_12316492_12326007.bam
+~/samtools/samtools sort processT.50.2017may/chr8_12316492_12326007.bam > processT.50.2017may/chr8_12316492_12326007.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_12316492_12326007.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_12316492_12326007.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_12316492_12326007.kmerge.nhsam
+cat processT.50.2017may/chr8_12316492_12326007.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_140472149_140475236.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr8_140472149_140475236.fa finalunique50_may/chr8_140472149_140475236.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_140472149_140475236.hk.allele.fa finalunique50_may/chr8_140472149_140475236.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_140472149_140475236.bam
+~/samtools/samtools sort processT.50.2017may/chr8_140472149_140475236.bam > processT.50.2017may/chr8_140472149_140475236.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_140472149_140475236.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_140472149_140475236.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_140472149_140475236.kmerge.nhsam
+cat processT.50.2017may/chr8_140472149_140475236.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_146086169_146086170.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr8_146086169_146086170.fa finalunique50_may/chr8_146086169_146086170.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_146086169_146086170.hk.allele.fa finalunique50_may/chr8_146086169_146086170.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_146086169_146086170.bam
+~/samtools/samtools sort processT.50.2017may/chr8_146086169_146086170.bam > processT.50.2017may/chr8_146086169_146086170.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_146086169_146086170.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_146086169_146086170.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_146086169_146086170.kmerge.nhsam
+cat processT.50.2017may/chr8_146086169_146086170.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_146246648_146254211.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr8_146246648_146254211.fa finalunique50_may/chr8_146246648_146254211.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_146246648_146254211.hk.allele.fa finalunique50_may/chr8_146246648_146254211.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_146246648_146254211.bam
+~/samtools/samtools sort processT.50.2017may/chr8_146246648_146254211.bam > processT.50.2017may/chr8_146246648_146254211.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_146246648_146254211.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_146246648_146254211.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_146246648_146254211.kmerge.nhsam
+cat processT.50.2017may/chr8_146246648_146254211.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_17765202_17773940.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr8_17765202_17773940.fa finalunique50_may/chr8_17765202_17773940.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_17765202_17773940.hk.allele.fa finalunique50_may/chr8_17765202_17773940.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_17765202_17773940.bam
+~/samtools/samtools sort processT.50.2017may/chr8_17765202_17773940.bam > processT.50.2017may/chr8_17765202_17773940.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_17765202_17773940.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_17765202_17773940.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_17765202_17773940.kmerge.nhsam
+cat processT.50.2017may/chr8_17765202_17773940.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_47175650_47183661.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr8_47175650_47183661.fa finalunique50_may/chr8_47175650_47183661.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_47175650_47183661.hk.allele.fa finalunique50_may/chr8_47175650_47183661.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_47175650_47183661.bam
+~/samtools/samtools sort processT.50.2017may/chr8_47175650_47183661.bam > processT.50.2017may/chr8_47175650_47183661.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_47175650_47183661.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_47175650_47183661.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_47175650_47183661.kmerge.nhsam
+cat processT.50.2017may/chr8_47175650_47183661.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_7355397_7364859.hk.alleleM.fa
+perl rewriteheader.pl finalunique50_may/chr8_7355397_7364859.fa finalunique50_may/chr8_7355397_7364859.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_7355397_7364859.hk.alleleM.fa finalunique50_may/chr8_7355397_7364859.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_7355397_7364859.bam
+~/samtools/samtools sort processT.50.2017may/chr8_7355397_7364859.bam > processT.50.2017may/chr8_7355397_7364859.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_7355397_7364859.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_7355397_7364859.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_7355397_7364859.kmerge.nhsam
+cat processT.50.2017may/chr8_7355397_7364859.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr8_8054700_8055725.hk.alleleM.fa.fasta
+perl rewriteheader.pl finalunique50_may/chr8_8054700_8055725.fa finalunique50_may/chr8_8054700_8055725.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr8_8054700_8055725.hk.alleleM.fa.fasta finalunique50_may/chr8_8054700_8055725.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr8_8054700_8055725.bam
+~/samtools/samtools sort processT.50.2017may/chr8_8054700_8055725.bam > processT.50.2017may/chr8_8054700_8055725.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr8_8054700_8055725.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr8_8054700_8055725.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr8_8054700_8055725.kmerge.nhsam
+cat processT.50.2017may/chr8_8054700_8055725.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr9_131612515_131619736.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr9_131612515_131619736.fa finalunique50_may/chr9_131612515_131619736.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr9_131612515_131619736.hk.allele.fa finalunique50_may/chr9_131612515_131619736.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr9_131612515_131619736.bam
+~/samtools/samtools sort processT.50.2017may/chr9_131612515_131619736.bam > processT.50.2017may/chr9_131612515_131619736.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr9_131612515_131619736.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr9_131612515_131619736.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr9_131612515_131619736.kmerge.nhsam
+cat processT.50.2017may/chr9_131612515_131619736.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chr9_139674766_139684228.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chr9_139674766_139684228.fa finalunique50_may/chr9_139674766_139684228.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chr9_139674766_139684228.hk.allele.fa finalunique50_may/chr9_139674766_139684228.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chr9_139674766_139684228.bam
+~/samtools/samtools sort processT.50.2017may/chr9_139674766_139684228.bam > processT.50.2017may/chr9_139674766_139684228.sorted.bam
+~/samtools/samtools index processT.50.2017may/chr9_139674766_139684228.sorted.bam
+~/samtools/samtools view processT.50.2017may/chr9_139674766_139684228.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chr9_139674766_139684228.kmerge.nhsam
+cat processT.50.2017may/chr9_139674766_139684228.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrUn_gl000219_175210_176178.hk.alleleT.fa
+perl rewriteheader.pl finalunique50_may/chrUn_gl000219_175210_176178.fa finalunique50_may/chrUn_gl000219_175210_176178.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrUn_gl000219_175210_176178.hk.alleleT.fa finalunique50_may/chrUn_gl000219_175210_176178.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrUn_gl000219_175210_176178.bam
+~/samtools/samtools sort processT.50.2017may/chrUn_gl000219_175210_176178.bam > processT.50.2017may/chrUn_gl000219_175210_176178.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrUn_gl000219_175210_176178.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrUn_gl000219_175210_176178.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrUn_gl000219_175210_176178.kmerge.nhsam
+cat processT.50.2017may/chrUn_gl000219_175210_176178.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrX_153817163_153819562.hk.alleleT.fa
+perl rewriteheader.pl finalunique50_may/chrX_153817163_153819562.fa finalunique50_may/chrX_153817163_153819562.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrX_153817163_153819562.hk.alleleT.fa finalunique50_may/chrX_153817163_153819562.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrX_153817163_153819562.bam
+~/samtools/samtools sort processT.50.2017may/chrX_153817163_153819562.bam > processT.50.2017may/chrX_153817163_153819562.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrX_153817163_153819562.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrX_153817163_153819562.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrX_153817163_153819562.kmerge.nhsam
+cat processT.50.2017may/chrX_153817163_153819562.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrX_153836675_153844015.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrX_153836675_153844015.fa finalunique50_may/chrX_153836675_153844015.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrX_153836675_153844015.hk.allele.fa finalunique50_may/chrX_153836675_153844015.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrX_153836675_153844015.bam
+~/samtools/samtools sort processT.50.2017may/chrX_153836675_153844015.bam > processT.50.2017may/chrX_153836675_153844015.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrX_153836675_153844015.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrX_153836675_153844015.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrX_153836675_153844015.kmerge.nhsam
+cat processT.50.2017may/chrX_153836675_153844015.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrX_61959549_61962054.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrX_61959549_61962054.fa finalunique50_may/chrX_61959549_61962054.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrX_61959549_61962054.hk.allele.fa finalunique50_may/chrX_61959549_61962054.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrX_61959549_61962054.bam
+~/samtools/samtools sort processT.50.2017may/chrX_61959549_61962054.bam > processT.50.2017may/chrX_61959549_61962054.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrX_61959549_61962054.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrX_61959549_61962054.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrX_61959549_61962054.kmerge.nhsam
+cat processT.50.2017may/chrX_61959549_61962054.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrX_65684132_65686184.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrX_65684132_65686184.fa finalunique50_may/chrX_65684132_65686184.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrX_65684132_65686184.hk.allele.fa finalunique50_may/chrX_65684132_65686184.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrX_65684132_65686184.bam
+~/samtools/samtools sort processT.50.2017may/chrX_65684132_65686184.bam > processT.50.2017may/chrX_65684132_65686184.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrX_65684132_65686184.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrX_65684132_65686184.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrX_65684132_65686184.kmerge.nhsam
+cat processT.50.2017may/chrX_65684132_65686184.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrX_93606603_93606604.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrX_93606603_93606604.fa finalunique50_may/chrX_93606603_93606604.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrX_93606603_93606604.hk.allele.fa finalunique50_may/chrX_93606603_93606604.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrX_93606603_93606604.bam
+~/samtools/samtools sort processT.50.2017may/chrX_93606603_93606604.bam > processT.50.2017may/chrX_93606603_93606604.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrX_93606603_93606604.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrX_93606603_93606604.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrX_93606603_93606604.kmerge.nhsam
+cat processT.50.2017may/chrX_93606603_93606604.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrY_26397837_26401035.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrY_26397837_26401035.fa finalunique50_may/chrY_26397837_26401035.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrY_26397837_26401035.hk.allele.fa finalunique50_may/chrY_26397837_26401035.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrY_26397837_26401035.bam
+~/samtools/samtools sort processT.50.2017may/chrY_26397837_26401035.bam > processT.50.2017may/chrY_26397837_26401035.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrY_26397837_26401035.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrY_26397837_26401035.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrY_26397837_26401035.kmerge.nhsam
+cat processT.50.2017may/chrY_26397837_26401035.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrY_27561402_27564601.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrY_27561402_27564601.fa finalunique50_may/chrY_27561402_27564601.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrY_27561402_27564601.hk.allele.fa finalunique50_may/chrY_27561402_27564601.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrY_27561402_27564601.bam
+~/samtools/samtools sort processT.50.2017may/chrY_27561402_27564601.bam > processT.50.2017may/chrY_27561402_27564601.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrY_27561402_27564601.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrY_27561402_27564601.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrY_27561402_27564601.kmerge.nhsam
+cat processT.50.2017may/chrY_27561402_27564601.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
+~/bwa/bwa index HERVK_alleles_may/chrY_6826441_6833384.hk.allele.fa
+perl rewriteheader.pl finalunique50_may/chrY_6826441_6833384.fa finalunique50_may/chrY_6826441_6833384.short.fa
+~/bwa/bwa mem -a HERVK_alleles_may/chrY_6826441_6833384.hk.allele.fa finalunique50_may/chrY_6826441_6833384.short.fa | ~/samtools/samtools view -Sbh > processT.50.2017may/chrY_6826441_6833384.bam
+~/samtools/samtools sort processT.50.2017may/chrY_6826441_6833384.bam > processT.50.2017may/chrY_6826441_6833384.sorted.bam
+~/samtools/samtools index processT.50.2017may/chrY_6826441_6833384.sorted.bam
+~/samtools/samtools view processT.50.2017may/chrY_6826441_6833384.sorted.bam | perl -lane'  
+BEGIN {$"="\t"} 
+$KMERS{"@F[2..3]"}=$KMERS{"@F[2..3]"}.";;;".$_; 
+END { 
+foreach $key (keys %KMERS) {$KMERS{$key}=~s/^;;;//; print "$KMERS{$key}"}} 
+' > processT.50.2017may/chrY_6826441_6833384.kmerge.nhsam
+cat processT.50.2017may/chrY_6826441_6833384.kmerge.nhsam | perl -lane '@H=split/\;\;\;/; 
+@S0=""; 
+@S1=split/\t/,$H[0]; 
+@S2=split/\t/,$H[1];  
+push @S0,$S1[0]; 
+push @S0,$S2[0]; 
+@sort=sort{$a<=>$b} @S0; 
+print "$sort[0]\t$sort[1]"' | sort -u | wc -l
