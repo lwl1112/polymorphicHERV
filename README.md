@@ -126,20 +126,21 @@ HG00100
 
 Note: only need to implement this step when the sequencing depth of the input data is low. (i.e, < 20x).
 
-Mixture model: clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
+4. Mixture model: clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
-To assign a label (0:absence, 1:presence, 2:solo-LTR):
+5. To assign a label (0:absence, 1:presence, 2:solo-LTR):
 
-retrieve the mapped k-mers.
+(An example can be checked in the supplementary in our paper: S3 Fig. Alignment of unique k-mers to HERV-K at chr12: 55727215.)
+
+5.1 retrieve the mapped k-mers.
 ```
 perl checksolo.pl [i]chr8_735_cluster1.txt [i]unique.withrc.50.fa chr8_7355397_7364859 [i]dataset_samples [i]hashlabels_1000g_50 [o]chr8_7355397_7364859_cluster1
 
 ```
 where chr8_735_cluster1.txt includes all individual's names in this cluster, and chr8_7355397_7364859 is the HERV-K coordinate.
 
-align the mapped unique k-mers to the corresponding alleles (with the help of alignment tools). 
+5.2 align the mapped unique k-mers to the corresponding alleles (with the help of alignment tools). 
 
-An example can be checked in the supplementary in our paper. (S3 Fig. Alignment of unique k-mers to HERV-K at chr12: 55727215.)
 <!----
 R code examples for implementing a conversion of the n/T matrix to the 0,1,2 matrix after the biologists anaylzed the clustering diagrams.
 
