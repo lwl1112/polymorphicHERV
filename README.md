@@ -5,7 +5,7 @@
 - red: output file/directory.
 ```
 -->
-## Visualization tool 
+# Visualization tool 
 
 Visualize distribution of HERV-K repeats in the 1000 genomes dataset at
 http://personal.psu.edu/~wul135/visualization/
@@ -13,11 +13,11 @@ http://personal.psu.edu/~wul135/visualization/
 codes can be downloaded from ```visualization/``` folder.
 
 
-## **K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data**
+# **K-mer base approach to mine patterns and leverage the repetitive nature of sequencing data**
 
 Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
 
-### -- generate n/T matrix --
+## **Generate n/T Matrix**
 
 ### Step 1: Generate reference k-mers (k=50)
 (The final output file [unique.withrc.50.fa] can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
@@ -39,9 +39,16 @@ where ```tscript.50.pbs``` is a pbs script can be run in a server.
 
 
 ### Step 3: Experiments: mapping to the k-mer references
-3.1 download bam files from 1000 Genomes Project.
+**--- (Note: To use this tool, you can start from here.) ----**
+**--- (1. download k-mer(k=50) reference [unique.withrc.50.fa] from Step 1.) ---** 
+**--- (2. downlad T values [T.50] for all HERV-K from Step 2. ---**
+**--- (3. download and convert your fasta data into 50-mer (e.g, 3.1), then do exact match as in 3.2) ---**
 
-3.2 using the bed file to extract mapped reads based on the corresponding coordinates. 
+#### 3.1 donwload and convert data
+
+3.1.1 download bam files from 1000 Genomes Project.
+
+3.1.2 use the bed file to extract mapped reads based on the corresponding coordinates. 
 
    samtools view -b -L  *.bed  completed.bam > extracted.bam
    
@@ -53,11 +60,13 @@ the bed file can be downloaded in 'bed files/':
 
 Note to GRCh37 and GRCh38 users: GRCh38 and GRCh37 have different naming scheme of chromosomes and the ALT contigs and the bed files should be changed to adapt.
 
-3.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50.
+3.1.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50 (e.g, using dsk tool).
 
 Example files [dataset_samples/] can be downloaded as follows:
 
 https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
+
+#### 3.2 exact match data to the reference, then genereate the n/T matrix
 ```
 $ perl findmatch.pl [i]unique.withrc.50.fa [i]dataset_samples/ [o]hashlabels_1000g_50/ 50 HG00096 HG00097 HG00099 HG00100  
 $ perl labelcount.pl [i]hashlabels_1000g_50/HG00096.dat [i]sortedSites [o]hashlabels_1000g_50/HG00096.label
@@ -110,7 +119,7 @@ HG00099
 HG00100
 -->
 
-###  -- mixture model for low coverage (depth) data --
+##  **Mixture Model for Low Depth Data**
 
 clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
 
