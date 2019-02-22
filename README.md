@@ -8,7 +8,7 @@
 # Visualization tool 
 
 Visualize distribution of HERV-K repeats in the 1000 genomes dataset at
-http://personal.psu.edu/~wul135/visualization/
+http://pages.iu.edu/~wli6/visualization/
 
 codes can be downloaded from ```visualization/``` folder.
 
@@ -40,9 +40,12 @@ where ```tscript.50.pbs``` is a pbs script can be run in a server.
 
 ### Step 3: Experiments: mapping to the k-mer references
 **--- (Note: To use this tool, you can start from here.) ----**
-**--- (1. download k-mer(k=50) reference [unique.withrc.50.fa] from Step 1.) ---** 
+
+**--- (1. download k-mer (k=50) reference [unique.withrc.50.fa] from Step 1.) ---** 
+
 **--- (2. downlad T values [T.50] for all HERV-K from Step 2. ---**
-**--- (3. download and convert your fasta data into 50-mer (e.g, 3.1), then do exact match as in 3.2) ---**
+
+**--- (3. download and convert your data into 50-mer fasta file (e.g, 3.1), then do exact match as in 3.2) ---**
 
 #### 3.1 donwload and convert data
 
@@ -119,12 +122,24 @@ HG00099
 HG00100
 -->
 
-##  **Mixture Model for Low Depth Data**
-
-clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
+##  **For Low Depth Data**
 
 Note: only need to implement this step when the sequencing depth of the input data is low. (i.e, < 20x).
 
+Mixture model: clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
+
+To assign a label (0:absence, 1:presence, 2:solo-LTR):
+
+retrieve the mapped k-mers.
+```
+perl checksolo.pl [i]chr8_735_cluster1.txt [i]unique.withrc.50.fa chr8_7355397_7364859 [i]dataset_samples [i]hashlabels_1000g_50 [o]chr8_7355397_7364859_cluster1
+
+```
+where chr8_735_cluster1.txt includes all individual's names in this cluster, and chr8_7355397_7364859 is the HERV-K coordinate.
+
+align the mapped unique k-mers to the corresponding alleles (with the help of alignment tools). 
+
+An example can be checked in the supplementary in our paper. (S3 Fig. Alignment of unique k-mers to HERV-K at chr12: 55727215.)
 <!----
 R code examples for implementing a conversion of the n/T matrix to the 0,1,2 matrix after the biologists anaylzed the clustering diagrams.
 
