@@ -55,7 +55,7 @@ where ```tscript.50.pbs``` is a pbs script can be run in a server.
 
    samtools view -b -L  *.bed  completed.bam > extracted.bam
    
-the bed file can be downloaded in 'bed files/':
+"*.bed" is the input bed file containing HERV-K coordinates. They can be downloaded in 'bed files/' for hg19 and hg38:
 
   HERVK_int.all.25oct2016.hg19.bed  (hg19 build)
   
