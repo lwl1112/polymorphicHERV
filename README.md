@@ -65,7 +65,9 @@ Note to GRCh37 and GRCh38 users: GRCh38 and GRCh37 have different naming scheme 
 
 3.1.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50 
 
-(e.g, using dsk tool: http://minia.genouest.org/dsk/  ./dsk -file *.fa -kmer-size 70 -abundance-min 0 //0 means exact match).
+(e.g, using dsk tool: http://minia.genouest.org/dsk/ 
+
+./dsk -file *.fa -kmer-size 50 -abundance-min 0 //0 means exact match).
 
 Example files [dataset_samples/] can be downloaded as follows:
 
