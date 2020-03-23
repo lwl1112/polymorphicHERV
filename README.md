@@ -20,7 +20,7 @@ Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
 ## **Generate n/T Matrix**
 
 ### Step 1: Generate reference k-mers (k=50)
-(The final output file [unique.withrc.50.fa] can also be downloaded from https://www.dropbox.com/s/y991vnaja8s9x66/unique.withrc.50.fa?dl=0)
+(The final output file [unique.withrc.50.fa] can also be downloaded from https://www.dropbox.com/s/hobrefa3l4hza76/unique.withrc.50.fa?dl=0)
 
 ```
 $ perl generate.pl [i]HERVK_alleles/  [o]kmer50pervirus/ 50  
@@ -63,7 +63,9 @@ where ```tscript.50.pbs``` is a pbs script can be run in a server.
 
 Note to GRCh37 and GRCh38 users: GRCh38 and GRCh37 have different naming scheme of chromosomes and the ALT contigs and the bed files should be changed to adapt.
 
-3.1.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50 (e.g, using dsk tool).
+3.1.3 convert bam files to fasta files, then kmerize to *.50.fa with k=50 
+
+(e.g, using dsk tool: http://minia.genouest.org/dsk/  ./dsk -file *.fa -kmer-size 70 -abundance-min 0 //0 means exact match).
 
 Example files [dataset_samples/] can be downloaded as follows:
 
