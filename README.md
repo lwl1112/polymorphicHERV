@@ -68,9 +68,9 @@ Note to GRCh37 and GRCh38 users: GRCh38 and GRCh37 have different naming scheme 
 (e.g, using dsk tool: http://minia.genouest.org/dsk/ ).
 
 ```
-dsk -file sample.fa -kmer-size 50 -abundance-min 0
-dsk2ascii -file sample.h5 -out sample.txt
-perl tofasta.pl sample.txt sample.50.fa   
+$ ./dsk -file sample.fa -kmer-size 50 -abundance-min 0
+$ ./dsk2ascii -file sample.h5 -out sample.txt
+$ perl tofasta.pl sample.txt sample.50.fa   
 ```
 
 Example files [dataset_samples/] can be downloaded as follows:
