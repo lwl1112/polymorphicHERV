@@ -134,7 +134,10 @@ HG00100
 
 Note: only need to implement this step when the sequencing depth of the input data is low. (i.e, < 20x).
 
-4. Mixture model: clustering/analysis.R (credits to Dr. Lin Lin llin@psu.edu)
+4. Mixture model: clustering/analysis.R 
+<!--
+```(credits to Dr. Lin Lin llin@psu.edu)```
+-->
 
 5. To assign a label (0:absence, 1:presence, 2:solo-LTR):
 
