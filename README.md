@@ -8,7 +8,7 @@
 # Visualization tool 
 
 Visualize distribution of HERV-K repeats in the 1000 genomes dataset at
-http://pages.iu.edu/~wli6/visualization/
+http://www.personal.psu.edu/wul135/visualization/
 
 codes can be downloaded from ```visualization/``` folder.
 
