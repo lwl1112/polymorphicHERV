@@ -73,9 +73,8 @@ $ ./dsk2ascii -file sample.h5 -out sample.txt
 $ perl tofasta.pl sample.txt sample.50.fa   
 ```
 
-Example files [dataset_samples/] can be downloaded as follows:
-
-https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0
+Example files [dataset_samples/] can be downloaded from github. 
+<!--as follows: https://www.dropbox.com/sh/z1uhuavavywjpz3/AADgbiJyN2zeBYOq1wlR2Tsoa?dl=0-->
 
 #### 3.2 exact match data to the reference, then genereate the n/T matrix
 ```
