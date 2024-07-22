@@ -19,8 +19,8 @@ Note: [i]: input; [o]: output. Remove "[i]", "[o]" when running scripts.
 
 ## **Generate n/T Matrix**
 
-### Step 1: Generate reference k-mers (k=50) (hg19)
-(The final output file [unique.withrc.50.fa] can also be downloaded from https://www.dropbox.com/s/hobrefa3l4hza76/unique.withrc.50.fa?dl=0)
+### Step 1: Generate reference k-mers (k=50)
+(The final output file [unique.withrc.50.fa] (based on hg19) can also be downloaded from https://www.dropbox.com/s/hobrefa3l4hza76/unique.withrc.50.fa?dl=0)
 
 ```
 $ perl generate.pl [i]HERVK_alleles/  [o]kmer50pervirus/ 50  
